@@ -1,0 +1,155 @@
+/* ── TARJETAS DE RESUMEN (Stats) ── */
+.row.mt-3.mb-4 .card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #f1efd1;
+    border-bottom: 4px solid #e2e8f0; /* Borde sutil inferior */
+}
+
+.row.mt-3.mb-4 .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(22, 163, 74, 0.1);
+}
+
+.row.mt-3.mb-4 .col-md-3:nth-child(1) .card { border-bottom-color: #64748b; } /* Total */
+.row.mt-3.mb-4 .col-md-3:nth-child(2) .card { border-bottom-color: #94a3b8; } /* Solicitados */
+.row.mt-3.mb-4 .col-md-3:nth-child(3) .card { border-bottom-color: #3b82f6; } /* Proceso (Azul) */
+.row.mt-3.mb-4 .col-md-3:nth-child(4) .card { border-bottom-color: #16a34a; } /* Completados (Verde) */
+
+.row.mt-3.mb-4 h4 {
+    margin-top: 5px;
+    font-size: 24px;
+}
+
+/* ── SECCIÓN DE FILTROS ── */
+#formFiltro .card {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f1efd1;
+    margin-bottom: 10px;
+    
+}
+
+#formFiltro label {
+    color: #0a400f;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-control, .form-select {
+    border: 1.5px solid #f1f5f9;
+    background: #dbdac2;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 10px;
+    transition: all 0.2s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    background: #fff;
+}
+
+/* ── BOTONES DE FILTRO ── */
+.btn-primary {
+    background: #16a34a;
+    border: none;
+    padding: 8px 20px;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.btn-primary:hover {
+    background: #15803d;
+}
+
+.btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    padding: 8px 20px;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+/* ── TABLA DE PEDIDOS ── */
+.table-responsive {
+    border-radius: 16px;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background: #c8debb !important;
+    color: #1b5e3a;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 15px;
+    border-bottom: 2px solid #dcfce7;
+}
+
+.table tbody td {
+    padding: 15px;
+    font-size: 14px;
+    color: #334155;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.table tbody tr:hover {
+    background-color: #c8debb;
+}
+
+/* ── BADGES Y STATUS ── */
+.badge {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+/* Botón Actualizar Estatus (Estilo Outline) */
+.btn-outline-dark {
+    border: 1.5px solid #1e293b;
+    color: #1e293b;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.btn-outline-dark:hover {
+    background: #1e293b;
+    color: #fff;
+}
+
+
+
+/* ── RESPONSIVO ── */
+@media (max-width: 768px) {
+    .row.mt-3.mb-4 .col-md-3 {
+        margin-bottom: 15px;
+    }
+    
+    .text-end {
+        text-align: left !important;
+        display: flex;
+        gap: 10px;
+    }
+    
+    .btn-sm {
+        flex: 1;
+    }
+}
+.modal-content { color: #1b1b1b; }

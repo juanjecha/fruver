@@ -1,0 +1,68 @@
+/* Nuevo pedido (página completa con menú lateral).
+   Todo va acotado a #tarjetaPedido para NO tocar el menú ni otras pantallas
+   (a diferencia de v_alta_pedidos.css, que es global y solo sirve en el modal). */
+
+#tarjetaPedido #formPedido { animation: fadeInPedido .3s ease-out; }
+@keyframes fadeInPedido { from { opacity: 0; transform: scale(.98); } to { opacity: 1; transform: scale(1); } }
+
+#tarjetaPedido .form-label { font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--fv-verde); }
+
+#tarjetaPedido .form-control,
+#tarjetaPedido .form-select {
+    background-color: #fff;
+    border: 1px solid #d2d2d7;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #1b1b1b;
+}
+#tarjetaPedido .form-control:focus,
+#tarjetaPedido .form-select:focus {
+    border-color: var(--fv-verde);
+    box-shadow: 0 0 0 4px rgba(27, 94, 58, .15);
+}
+#tarjetaPedido .form-select-sm,
+#tarjetaPedido .form-control-sm { padding: 6px 10px; }
+
+#tarjetaPedido h6 { color: var(--fv-verde); font-weight: 700; }
+#tarjetaPedido hr { border-top: 1px solid var(--fv-verde); opacity: .25; margin: 22px 0; }
+
+#tarjetaPedido .table-responsive {
+    border: 1px solid rgba(27, 94, 58, .25);
+    border-radius: 14px;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+#tarjetaPedido .table { margin-bottom: 0; }
+#tarjetaPedido .table tbody td { border: 0; padding: 8px 5px; }
+
+/* Botones */
+#tarjetaPedido .btn-primary {
+    background-color: var(--fv-verde); border: 0; border-radius: 10px;
+    padding: 10px 20px; font-weight: 600;
+}
+#tarjetaPedido .btn-primary:hover { background-color: #14482c; }
+#tarjetaPedido .btn-outline-primary {
+    color: var(--fv-verde); border-color: var(--fv-verde); border-radius: 10px; font-weight: 600;
+}
+#tarjetaPedido .btn-outline-primary:hover { background-color: var(--fv-verde); color: #fff; }
+#tarjetaPedido .btn-secondary {
+    background-color: #fff; border: 1px solid #b9b9bd; color: #1b1b1b;
+    border-radius: 10px; padding: 10px 20px; font-weight: 500;
+}
+#tarjetaPedido .btn-secondary:hover { background-color: #f3f3f3; }
+#tarjetaPedido #btnCalcular { border-radius: 8px; }
+#tarjetaPedido .btn-danger.btn-sm {
+    background: transparent; border: 0; color: #d92d20; font-size: 16px; font-weight: 700;
+}
+
+#tarjetaPedido .subtotal-fila { color: #5c5c60; }
+#tarjetaPedido #tablaProductos .inp-cantidad,
+#tarjetaPedido #tablaProductos .inp-precio,
+#tarjetaPedido #tablaProductos .inp-subtotal { min-width: 90px; }
+#tarjetaPedido #tablaProductos select { min-width: 130px; }
+@media (max-width: 768px) {
+    #tarjetaPedido .d-flex.justify-content-end { flex-direction: column-reverse; gap: 10px !important; }
+    #tarjetaPedido .btn-primary,
+    #tarjetaPedido .btn-secondary { width: 100%; }
+}

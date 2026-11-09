@@ -1,0 +1,44 @@
+/* ================================================
+   Repartidores - ajustes propios de esta pantalla.
+   El diseño general (menú, tarjetas, tabla) viene de
+   layout/base.css y comun/v_tabla_datos.css, igual que Clientes.
+   ================================================ */
+
+/* Encabezado: título a la izquierda y botón a la derecha; en teléfono el botón baja */
+.fv-encabezado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+
+/* Columnas de texto largo y botones de acción */
+.fila-producto td.direccion { min-width: 150px; }
+.fila-producto td.notas {
+    min-width: 180px;
+    max-width: 280px;
+    color: #6b7280;
+    font-size: 13.5px;
+}
+.fila-producto td.acciones { white-space: nowrap; }
+
+/* Modal: título visible (el fondo general pone el texto en blanco) */
+#miModal .modal-content {
+    border: 0;
+    border-radius: 18px;
+    overflow: hidden;
+}
+#miModal .modal-title {
+    color: #1b5e3a;
+    font-weight: 700;
+}
+
+/* El JS ajusta la altura del iframe al formulario; este es el mínimo */
+#iframeContenido {
+    display: block;
+    width: 100%;
+    min-height: 220px;
+    border: 0;
+}

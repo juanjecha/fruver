@@ -1,0 +1,21 @@
+/* Cuentas de vendedores avanzados - ajustes propios de esta pantalla.
+   El diseño general (menú, tarjetas, tabla) viene de layout/base.css y comun/v_tabla_datos.css. */
+
+/* Encabezado: título y descripción a la izquierda, botón a la derecha; en teléfono el botón baja */
+.fv-encabezado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+.fv-encabezado > div { flex: 1 1 420px; }
+.fv-encabezado small { display: block; max-width: 720px; }
+
+/* Modal: título visible (el fondo general pone el texto en blanco) */
+#miModal .modal-content { border: 0; border-radius: 18px; overflow: hidden; }
+#miModal .modal-title   { color: #1b5e3a; font-weight: 700; }
+
+/* El JS ajusta la altura del iframe al formulario; este es el mínimo */
+#iframeContenido { display: block; width: 100%; min-height: 220px; border: 0; }

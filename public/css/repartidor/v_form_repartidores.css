@@ -1,0 +1,106 @@
+/* ================================================
+   Formularios de Repartidores (alta y edición).
+   Se ven dentro del modal; mismo estilo que el formulario de Clientes.
+   ================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background: #ffffff;
+    padding: 24px;
+}
+
+.form-repartidor {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Dos campos por renglón en pantallas anchas (nombre / apellidos) */
+.form-repartidor .fila {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+}
+.form-repartidor .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* ── LABELS ── */
+.form-repartidor label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* ── CAMPOS ── */
+.form-repartidor input[type="text"],
+.form-repartidor input[type="tel"],
+.form-repartidor textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #374151;
+    background: #f9fafb;
+    outline: none;
+    transition: all 0.2s ease;
+}
+.form-repartidor textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+.form-repartidor input:focus,
+.form-repartidor textarea:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    background: #ffffff;
+}
+
+.form-repartidor .ayuda {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* ── BOTÓN GUARDAR ── */
+.form-repartidor input[type="submit"] {
+    margin-top: 6px;
+    align-self: flex-end;
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.form-repartidor input[type="submit"]:hover {
+    background: #1c1d1c;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+.form-repartidor input[type="submit"]:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+/* ── TELÉFONO ── */
+@media (max-width: 480px) {
+    body { padding: 16px; }
+    .form-repartidor input[type="submit"] {
+        width: 100%;
+        align-self: stretch;
+    }
+}

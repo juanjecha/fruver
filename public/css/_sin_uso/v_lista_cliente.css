@@ -1,0 +1,190 @@
+/* ── CONFIGURACIÓN GENERAL ── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background: #EFFDF4; /* Fondo verde pálido de la vista productos */
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+#titulo {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 4px;
+    letter-spacing: -0.9px;
+}
+
+h3 + small {
+    font-size: 18px;
+    color: #6b7280;
+    font-weight: 400;
+}
+
+/* ── BOTÓN REGISTRAR CLIENTE ── */
+.btn-success {
+    background: #16a34a;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);
+    transition: all 0.25s ease;
+}
+
+.btn-success:hover {
+    background: #15803d;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(22, 163, 74, 0.4);
+}
+
+/* ── CARDS DE BÚSQUEDA Y TABLA ── */
+.card {
+    border: 1px solid #e8f5e9;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    animation: fadeInUp 0.4s ease both;
+    margin-bottom: 24px;
+}
+
+.card label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #16a34a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* ── INPUT DE BÚSQUEDA ── */
+#buscar {
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #2e2e2e;
+    background: #f9fafb;
+    padding: 10px 16px;
+    transition: all 0.2s;
+}
+
+#buscar:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    background: white;
+    outline: none;
+}
+
+/* ── TABLA DE CLIENTES ── */
+.table thead tr th {
+    font-size: 12px;
+    font-weight: 600;
+    color: #16a34a;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 12px 16px;
+    background: #f0fdf4;
+    border-bottom: 2px solid #dcfce7;
+}
+
+/* Redondeado de esquinas de la tabla */
+.table thead tr th:first-child { border-radius: 10px 0 0 10px; }
+.table thead tr th:last-child { border-radius: 0 10px 10px 0; }
+
+.fila-cliente td {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #374151;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+}
+
+.fila-cliente:hover td {
+    background: #f0fdf4; /* Efecto hover igual a productos */
+}
+
+/* Estilos para celdas específicas */
+.fila-cliente td:first-child {
+    font-weight: 600;
+    color: #1a2e1a;
+}
+
+/* ── BOTONES ACCIONES (Editar/Eliminar) ── */
+.btn-warning.btn-sm, .btn-danger.btn-sm {
+    background: #ffffff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+    margin-right: 4px;
+}
+
+.btn-warning.btn-sm {
+    color: #048300;
+    border: 1.5px solid #048300;
+}
+
+.btn-warning.btn-sm:hover {
+    background: #8ae279;
+    color: #000;
+    box-shadow: 3px 3px 3px 0px rgba(22, 163, 74, 0.35);
+}
+
+.btn-danger.btn-sm {
+    color: #ff0000;
+    border: 1.5px solid #ff0000;
+}
+
+.btn-danger.btn-sm:hover {
+    background: #ff8989;
+    color: #000;
+    box-shadow: 3px 3px 3px 0px rgba(163, 22, 22, 0.35);
+}
+
+/* ── MODAL ── */
+.modal-content {
+    border-radius: 18px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    background: #f0fdf4;
+    border-bottom: 1px solid #dcfce7;
+    border-radius: 18px 18px 0 0;
+}
+
+.modal-title {
+    font-weight: 700;
+    color: #15803d;
+}
+
+/* ── ANIMACIONES ── */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 768px) {
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 15px;
+    }
+    .btn-success { width: 100%; text-align: center; }
+    .card { overflow-x: auto; }
+}

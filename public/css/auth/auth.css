@@ -1,0 +1,313 @@
+/* ==========================================================
+   FRUVER - Login y registro (responsivo: celular, tablet, PC)
+   Bootstrap 5 aporta reset, formularios y alertas; el diseño
+   (colores, tarjetas, paneles) es de este archivo.
+   Breakpoints: <576 celular | 576-991 tablet | >=992 PC
+   ========================================================== */
+
+:root {
+    --verde-fondo: #0f3d12;
+    --verde-medio: #1f6f26;
+    --verde-oscuro: #0c3f12;
+    --verde-texto: #123d15;
+    --crema: #fdf8dc;
+    --crema-texto: #a89a70;
+    --fuente-titulo: 'Playfair Display', Georgia, serif;
+    --fuente-texto: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+body.auth {
+    font-family: var(--fuente-texto);
+    background: var(--verde-fondo);
+    color: #1b1b1b;
+}
+
+/* ───────── Textos ───────── */
+.saludo {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: .85rem;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    color: var(--verde-texto);
+    margin: 0;
+}
+.titulo {
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1.1rem + 2vw, 2.1rem);
+    line-height: 1.15;
+    margin: .1rem 0 .35rem;
+}
+.subtitulo {
+    color: var(--crema-texto);
+    font-size: .95rem;
+    margin-bottom: 1.5rem;
+}
+.marca {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: clamp(1.6rem, 1.2rem + 2vw, 2.1rem);
+    letter-spacing: .02em;
+    color: var(--verde-texto);
+}
+
+/* ───────── Campos ───────── */
+.campo .form-control {
+    background: #fff;
+    border: 1px solid #e6e1c8;
+    border-radius: .7rem;
+    padding: .7rem .9rem;
+    font-size: .95rem;
+}
+.campo .form-control:focus {
+    border-color: var(--verde-medio);
+    box-shadow: 0 0 0 .2rem rgba(31, 111, 38, .2);
+}
+.campo-pass { position: relative; }
+.campo-pass .form-control { padding-right: 2.9rem; }
+.btn-ojo {
+    position: absolute;
+    top: 50%;
+    right: .5rem;
+    transform: translateY(-50%);
+    border: 0;
+    background: none;
+    color: #8a8a8a;
+    padding: .5rem;
+    line-height: 1;
+}
+.btn-ojo:hover { color: var(--verde-medio); }
+
+/* ───────── Botones y enlaces ───────── */
+.btn-fruver {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: .85rem;
+    padding: .75rem 1rem;
+    font-weight: 700;
+    font-size: .95rem;
+    color: #fff;
+    background: linear-gradient(90deg, var(--verde-medio), var(--verde-oscuro) 45%, #1d7a25);
+    transition: filter .15s ease, transform .05s ease;
+}
+.btn-fruver:hover { filter: brightness(1.15); color: #fff; }
+.btn-fruver:active { transform: translateY(1px); }
+.btn-fruver:focus-visible,
+.enlace-fruver:focus-visible { outline: 3px solid rgba(31, 138, 59, .5); outline-offset: 2px; }
+
+.enlace-fruver { color: #1b7a34; font-weight: 600; text-decoration: none; }
+.enlace-fruver:hover { text-decoration: underline; color: #145c27; }
+.btn-enlace { background: none; border: 0; padding: .25rem 0; font-size: .85rem; }
+
+/* Checklist de la contraseña */
+.reglas-pass {
+    list-style: none;
+    margin: .5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem .9rem;
+    font-size: .75rem;
+    color: #8a8a8a;
+}
+.reglas-pass li::before { content: '○ '; }
+.reglas-pass li.ok { color: #1b7a34; font-weight: 600; }
+.reglas-pass li.ok::before { content: '● '; }
+
+/* Hoja decorativa (esquina superior derecha) */
+.hoja {
+    position: absolute;
+    top: .75rem;
+    right: -1.5rem;
+    width: clamp(90px, 18vw, 170px);
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ==========================================================
+   LOGIN
+   Celular/tablet: logo → formulario → tarjetas (una columna)
+   PC: logo + tarjetas a la izquierda, formulario a la derecha
+   ========================================================== */
+.auth-shell {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-logo { order: 1; padding: 1.25rem 1rem .75rem; text-align: center; }
+.auth-logo img { width: clamp(110px, 30vw, 170px); height: auto; }
+
+.panel-crema {
+    order: 2;
+    position: relative;
+    overflow: hidden;
+    background: var(--crema);
+    margin: 0 .75rem;
+    border-radius: 2rem;
+    padding: 2.25rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.auth-contenido { width: 100%; max-width: 27.5rem; position: relative; }
+
+.auth-tarjetas {
+    order: 3;
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 36rem;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 2rem;
+}
+
+/* Tarjeta: crema a la izquierda que se funde con la foto de la derecha */
+.tarjeta {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height:5.75rem;
+    padding: .1rem 1rem .1rem 1rem;
+    border-radius: .1rem 2rem 2rem .1rem;
+    background-color: #2c5a2e;
+    background-image:
+        linear-gradient(90deg, var(--crema) 0%, var(--crema) 48%, rgba(253, 248, 220, 0) 85%),
+        var(--foto, none);
+    background-size: cover;
+    background-position: center right;
+}
+.tarjeta h2 {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--verde-texto);
+    margin: 0 0 .15rem;
+}
+.tarjeta p { font-size: .72rem; line-height: 1.3; color: #2b2b2b; margin: 0; max-width: 62%; }
+.tarjeta__icono {
+    position: absolute;
+    left: .9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3.6rem;
+    height: 3.6rem;
+    display: grid;
+    place-items: center;
+    font-size: 1.9rem;
+    color: #e0a520;
+}
+.tarjeta__icono img { width: 100%; height: auto; } /* si cambias el icono por un PNG */
+/* Tarjeta que es solo la imagen del banner */
+.tarjeta.tarjeta--banner {
+    padding: 0;
+    min-height: 0;
+    background: none;
+    margin-top: -3vw;
+    gap: 2rem;
+}
+.tarjeta--banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: .9rem 2rem 2rem .6rem;
+}
+
+@media (min-width: 576px) {
+    .tarjeta { min-height: 6.25rem; padding-left: 6rem; }
+    .tarjeta h2 { font-size: 1.25rem; }
+    .tarjeta p { font-size: .8rem; max-width: 58%; }
+    .tarjeta__icono { width: 4rem; height: 4rem; font-size: 2.2rem; }
+    .panel-crema { padding: 3rem 2rem; margin: 0 1.5rem; }
+}
+
+@media (min-width: 768px) {
+    html.auth-html { font-size: clamp(14px, 1.2vw + 5px, 28px); }
+
+    .auth-shell {
+        display: grid;
+        grid-template-columns: 52fr 48fr;   /* columna verde más ancha */
+        grid-template-rows: auto 1fr;
+    }
+
+    .auth-logo { grid-column: 1; grid-row: 1; text-align: center; padding: 2vw 0 1vw; }
+    .auth-logo img { width: 22vw; min-width: 150px; max-width: 520px; height: auto; }
+
+    .panel-crema {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        margin: .6rem 0 0;
+        border-radius: 4rem 0 0 0;
+        padding: 3rem 5vw;
+    }
+    .panel-crema .titulo { font-size: 1.6rem; }
+    .panel-crema .hoja { width: 12vw; right: -3vw; top: 1.5vw; }
+
+    .auth-tarjetas {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: start;
+        max-width: none;
+        margin: 0 -10vw 0 -1vw;     /* más anchos: sobresalen hacia el panel crema */
+        padding: 0 0 2rem;
+        position: relative;
+        z-index: 3;
+        gap: 2.5rem;
+    }
+}
+
+/* ==========================================================
+   REGISTRO (fondo con foto desenfocada + tarjeta crema)
+   ========================================================== */
+.fondo-registro {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-color: #1d2d14;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, .25), rgba(0, 0, 0, .25)),
+        var(--fondo-registro, none);
+    background-size: cover;
+    background-position: center;
+    filter: blur(6px);
+    transform: scale(1.08); /* oculta los bordes que deja el blur */
+    --fondo-registro: url('../../img/auth/fondo-registro.webp');
+}
+@media (max-width: 767.98px) {
+    /* En celular se carga una foto más ligera */
+    .fondo-registro { --fondo-registro: url('../../img/auth/fondo-registro-sm.webp'); }
+}
+
+.registro-main {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+}
+.registro-card {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 30rem;
+    background: var(--crema);
+    border-radius: 2rem;
+    padding: 2rem 1.5rem 1.75rem;
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, .35);
+}
+.registro-card .hoja { top: -.25rem; right: -.75rem; width: clamp(110px, 26vw, 150px); }
+
+@media (min-width: 576px) {
+    .registro-card { padding: 2.5rem 2.75rem 2.25rem; border-radius: 2.5rem; }
+}
+
+/* Respeta a quien pidió menos animación */
+@media (prefers-reduced-motion: reduce) {
+    .btn-fruver { transition: none; }
+}

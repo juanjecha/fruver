@@ -1,0 +1,65 @@
+/* ── TABLA ── */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table thead tr th {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1b5e3a;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 10px 16px;
+    background: #c8debb;
+    border-bottom: 2px solid #dcfce7;
+}
+.table thead tr th:first-child { border-radius: 10px 0 0 10px; }
+.table thead tr th:last-child  { border-radius: 0 10px 10px 0; }
+
+/* ── FILAS (con hover) ── */
+.fila-producto td {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #374151;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+    transition: all 0.4s ease, transform 0.1s;
+}
+.fila-producto:last-child td { border-bottom: none; }
+.fila-producto:hover td      {background: #c8debb; }
+.fila-producto td.nombre      { font-weight: 600; color: #1a2e1a; }
+.fila-producto td.descripcion { color: #6b7280; font-size: 13.5px; }
+
+/* ── BOTONES: Editar (verde) y Eliminar (rojo) ── */
+.btn-warning.btn-sm {
+    background: #d0e7cb;
+    color: #048300;
+    border: 1.5px solid #048300;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+.btn-warning.btn-sm:hover {
+    background: #8ae279;
+    color: #000000;
+    box-shadow: 3px 3px 3px 0px rgba(22, 163, 74, 0.35);
+}
+
+.btn-danger.btn-sm {
+    background: #e8dada;
+    color: #ae0000;
+    border: 1.5px solid #ff0000;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+.btn-danger.btn-sm:hover {
+    background: #ff8989;
+    color: #000000;
+    box-shadow: 3px 3px 3px 0px rgba(163, 22, 22, 0.35);
+}

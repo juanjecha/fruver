@@ -1,0 +1,107 @@
+/* Gestión de entregas (dentro del layout con menú lateral).
+   Misma línea que Seguimiento / Control de pedidos. Todo acotado a #entregas
+   y a sus modales para no afectar el menú ni otras pantallas. */
+
+#entregas #titulo { color: #fff; }
+
+/* ── TARJETAS DE RESUMEN ── */
+#entregas .stat {
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .05);
+    border-bottom: 4px solid #e2e8f0;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+#entregas .stat:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(22, 163, 74, .12); }
+#entregas .stat h4 { margin: 4px 0 0; font-size: 24px; }
+#entregas .stat small { color: var(--fv-verde); font-weight: 600; }
+#entregas .stat--total     { border-bottom-color: #64748b; }
+#entregas .stat--solicitado{ border-bottom-color: #94a3b8; }
+#entregas .stat--proceso   { border-bottom-color: #f59e0b; }
+#entregas .stat--proceso h4 { color: #b45309; }
+#entregas .stat--completo  { border-bottom-color: #16a34a; }
+#entregas .stat--completo h4 { color: #15803d; }
+
+/* ── FILTROS ── */
+#entregas #filtros .form-label {
+    color: var(--fv-verde);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 6px;
+}
+#entregas .form-select,
+#modalRepartidor .form-select {
+    background-color: #dbdac2;
+    border: 1.5px solid #f1f5f9;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 10px 12px;
+}
+#entregas .form-select:focus,
+#modalRepartidor .form-select:focus {
+    background-color: #fff;
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, .12);
+}
+
+/* ── BOTONES ── */
+#entregas .btn, #modalRepartidor .btn { border-radius: 8px; font-weight: 600; }
+#entregas .btn-primary, #modalRepartidor .btn-primary { background: #16a34a; border: none; padding: 8px 20px; }
+#entregas .btn-primary:hover, #modalRepartidor .btn-primary:hover { background: #15803d; }
+#entregas .btn-secondary, #modalRepartidor .btn-secondary {
+    background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; padding: 8px 20px;
+}
+#entregas .btn-secondary:hover, #modalRepartidor .btn-secondary:hover { background: #e2e8f0; color: #1e293b; }
+#entregas .btn-dark.btn-sm { background: #1e293b; border: 1.5px solid #1e293b; color: #fff; }
+#entregas .btn-dark.btn-sm:hover { background: #0f172a; }
+#entregas .btn-outline-secondary.btn-sm { border: 1.5px solid #64748b; color: #475569; }
+#entregas .btn-outline-secondary.btn-sm:hover { background: #64748b; color: #fff; }
+
+/* ── CADA ENTREGA ── */
+#entregas .entrega-item {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid #94a3b8;
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+#entregas .entrega-item:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(22, 163, 74, .12); }
+#entregas .entrega-item--primary { border-left-color: #3b82f6; }
+#entregas .entrega-item--warning { border-left-color: #f59e0b; }
+#entregas .entrega-item--success { border-left-color: #16a34a; }
+
+#entregas .entrega-item__num   { font-weight: 700; color: var(--fv-verde); font-size: 1.05rem; }
+#entregas .entrega-item__fecha { color: #64748b; font-size: 13px; }
+#entregas .entrega-item__info  { font-size: 14px; color: #334155; display: grid; gap: 2px; }
+#entregas .entrega-item__info strong { color: var(--fv-verde); }
+#entregas .entrega-item__acciones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 6px; }
+
+#entregas .badge { padding: 6px 12px; border-radius: 6px; font-weight: 600; font-size: 11px; }
+
+/* ── AVISOS ── */
+#entregas .alert { border: 0; border-radius: 12px; }
+#entregas .alert-info    { background: var(--fv-tabla-cab); color: var(--fv-verde); }
+#entregas .alert-warning { background: #fff3c4; color: #7a5b00; }
+
+/* ── MODAL ── */
+/* ── MODAL ── */
+#modalRepartidor .modal-content,
+#modalDetalle .modal-content { border: none; border-radius: 20px; overflow: hidden; color: #1b1b1b; }
+#modalRepartidor .modal-header,
+#modalDetalle .modal-header { background: var(--fv-tarjeta); border-bottom: 1px solid #e2e8f0; }
+#modalRepartidor .modal-title,
+#modalDetalle .modal-title { color: var(--fv-verde); font-weight: 700; }
+#modalDetalle h6 { color: var(--fv-verde); font-weight: 700; }
+#modalRepartidor .form-label { color: var(--fv-verde); font-weight: 700; }
+
+/* ── TELÉFONO ── */
+@media (max-width: 576px) {
+    #entregas .entrega-item { padding: 14px; }
+    #entregas .entrega-item__acciones .btn { flex: 1 1 100%; }
+    #entregas #filtros .btn, #entregas #filtros a.btn { flex: 1; }
+}

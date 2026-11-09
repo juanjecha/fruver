@@ -1,0 +1,261 @@
+/* ================================================
+   Existencias - el fondo, el menú y las tarjetas crema vienen de
+   layout/base.css (igual que Productos). Aquí solo van las piezas propias.
+   ================================================ */
+
+/* ── ANIMACIONES ── */
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(18px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+
+.ex-titulo, 
+.ex-subtitulo, 
+.ex-cards-resumen, 
+.ex-seccion-titulo, 
+.ex-producto-card {
+    animation: fadeInUp 0.5s ease both;
+}
+
+
+
+/* Delay */
+.ex-cards-resumen { animation-delay: 0.1s; }
+.ex-seccion-titulo { animation-delay: 0.2s; }
+.ex-producto-card { animation-delay: 0.3s; }
+
+/* ──  ── */
+
+.ex-grafica {
+    position: relative;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.ex-titulo { 
+    color: #1b5e3a;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.ex-subtitulo { 
+    color: #6c757d; 
+    margin-bottom: 20px;
+}
+
+/* ===== TARJETAS RESUMEN ===== */
+.ex-cards-resumen {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.ex-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.ex-card-line {
+    height: 6px;
+    width: 100%;
+}
+
+.ex-verde-line { background-color: #28a745; }
+.ex-amarillo-line { background-color: #ffc107; }
+.ex-rojo-line { background-color: #dc3545; }
+
+.ex-card-body {
+    padding: 20px;
+}
+
+.ex-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.ex-card-label { color: #44404b; font-size: 0.95rem; }
+
+.ex-icono {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.ex-icono-verde { background: #e6f9ee; }
+.ex-icono-amarillo { background: #fff8e1; }
+.ex-icono-rojo { background: #fdecea; }
+
+.ex-card-valor {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #212529;
+}
+
+/* ===== SECCIÓN TÍTULO ===== */
+.ex-seccion-titulo {
+    background: #f0faf0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    color: #28a745;
+}
+
+.ex-seccion-titulo h5 { 
+    margin: 0; 
+    color: #28a745; 
+    font-size: 20px;
+}
+
+/* ===== CARDS PRODUCTO ===== */
+.ex-producto-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.144);
+    border-left: 5px solid;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.ex-borde-verde { border-left-color: #28a745; }
+.ex-borde-amarillo { border-left-color: #ffc107; }
+.ex-borde-rojo { border-left-color: #dc3545; }
+
+.ex-producto-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.ex-producto-nombre { 
+    margin: 0; 
+    font-weight: 700; 
+    font-size: 1.1rem; 
+    color: #053014;
+}
+
+/* ===== BADGES ===== */
+.ex-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.ex-badge-rojo { background: #dc3545; color: #fff; }
+.ex-badge-amarillo { background: #ffc107; color: #212529; }
+.ex-badge-verde { background: #28a745; color: #fff; }
+
+/* ===== GRID 3 CAJAS ===== */
+.ex-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.ex-box {
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ex-box-verde { background: #f0faf0; }
+.ex-box-naranja { background: #fff8f0; }
+
+.ex-box-label { color: #6c757d; font-size: 0.82rem; }
+.ex-box-valor { font-size: 1.5rem; font-weight: 700; }
+.ex-box-nota { font-size: 0.78rem; color: #6c757d; }
+
+.ex-color-verde { color: #28a745; }
+.ex-color-naranja { color: #e67e22; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .ex-cards-resumen { grid-template-columns: 1fr; }
+    .ex-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== MERMA POR PRODUCTO ===== */
+.ex-grid-merma {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* máximo 4 por fila */
+    gap: 16px;
+}
+
+.ex-merma-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-left: 5px solid #dc3545;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    animation: fadeInUp 0.5s ease both;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ex-merma-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(220, 53, 69, 0.15);
+}
+
+.ex-merma-nombre {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #44404b;
+    text-transform: capitalize;
+}
+
+.ex-merma-valor {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #dc3545;
+    line-height: 1;
+}
+
+.ex-merma-nota {
+    font-size: 0.75rem;
+    color: #6c757d;
+}
+
+.ex-merma-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .ex-grid-merma { grid-template-columns: repeat(2, 1fr); }
+}
+/* ===== TEXTOS CHICOS DENTRO DE LAS TARJETAS =====
+   layout/base.css pone los <small> en blanco (para los subtítulos sobre el fondo verde);
+   dentro de las tarjetas se regresan a gris para que se lean. */
+.fv-contenido .card small,
+.fv-contenido .card .ex-box-label,
+.fv-contenido .card .ex-box-nota,
+.fv-contenido .card .ex-merma-nota {
+    color: #6c757d;
+}
+.fv-contenido .card small.ex-color-naranja { color: #e67e22; }

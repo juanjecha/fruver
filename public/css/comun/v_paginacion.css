@@ -1,0 +1,54 @@
+/* Contenedor */
+.paginacion-nav {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.paginacion {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 6px;
+}
+
+/* Cada botón */
+.paginacion__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    color: #374151;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+
+.paginacion__link:hover {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+}
+
+/* Página activa */
+.paginacion__item--activo .paginacion__link {
+    background: #195e28;
+    color: #ffffff;
+    border-color: #195e28;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* Deshabilitado (primera/última cuando no aplica) */
+.paginacion__item--deshabilitado .paginacion__link {
+    color: #d1d5db;
+    border-color: #e5e7eb;
+    cursor: not-allowed;
+    pointer-events: none;
+}

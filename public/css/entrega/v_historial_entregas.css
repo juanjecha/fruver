@@ -1,0 +1,34 @@
+#historial-entregas { color: #24332b; }
+#historial-entregas .historial-encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+}
+#historial-entregas h3 { color: #fff; margin: 0 0 .35rem; font-weight: 750; }
+#historial-entregas .historial-encabezado p { color: rgba(255,255,255,.8); margin: 0; }
+#historial-entregas .historial-total {
+    min-width: 150px;
+    padding: 1rem 1.25rem;
+    border-radius: 14px;
+    background: #fff;
+    border-bottom: 4px solid #16a34a;
+    box-shadow: 0 4px 12px rgba(0,0,0,.06);
+}
+#historial-entregas .historial-total span { display: block; color: #64748b; font-size: .82rem; font-weight: 600; }
+#historial-entregas .historial-total strong { display: block; color: #15803d; font-size: 1.65rem; }
+#historial-entregas .historial-tabla-card { border: 0; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+#historial-entregas table { min-width: 850px; }
+#historial-entregas thead th { background: #e7eadc; color: #244735; font-size: .78rem; text-transform: uppercase; letter-spacing: .03em; white-space: nowrap; }
+#historial-entregas tbody td { font-size: .9rem; border-color: #edf0e8; }
+#historial-entregas tbody tr:hover { background: #f8faf5; }
+#historial-entregas .historial-numero { font-weight: 800; color: #15803d; }
+#historial-entregas .historial-direccion { min-width: 220px; max-width: 330px; white-space: normal; }
+#historial-entregas .badge { padding: .45rem .6rem; border-radius: 6px; }
+#historial-entregas .historial-vacio { border: 0; border-radius: 12px; background: #eef6e9; color: #285438; padding: 1.25rem; }
+@media (max-width: 576px) {
+    #historial-entregas .historial-total { width: 100%; }
+    #historial-entregas .historial-encabezado { align-items: stretch; }
+}

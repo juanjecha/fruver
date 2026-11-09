@@ -1,0 +1,311 @@
+/* ==========================================================================
+   FRUVER · Portal del cliente (Pedidos · Crédito · Mis datos)
+   Usa el layout base (menú lateral). Responsivo:
+   teléfono < 768 px · tablet 768–1199 px · computadora ≥ 1200 px
+   ========================================================================== */
+
+:root {
+    --cli-cab:        68px;      /* alto de la barra superior */
+    --cli-oliva:      #99b052;   /* pestaña activa */
+    --cli-oliva-osc:  #6f7f3d;   /* pestaña inactiva */
+    --cli-fila:       #d1e8b3;
+    --cli-fila-borde: #9bb870;
+    --cli-gris:       #e1e2d0;
+}
+
+/* Fondo: foto de verduras difuminada */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: url('../../img/panel/fondo-admin.jpg') center / cover no-repeat;
+    filter: blur(5px) brightness(.55);
+    transform: scale(1.05);
+}
+
+/* ───────────── Barra superior ───────────── */
+.cli-cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    height: var(--cli-cab);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 clamp(12px, 3vw, 24px);
+    background: var(--fv-verde);
+}
+.cli-cabecera__logo { height: 52px; width: auto; }
+.cli-cabecera__titulo {
+    font-family: 'Lilita One', 'Montserrat', sans-serif;
+    font-size: clamp(1.5rem, 4.5vw, 2.6rem);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #eeeacc;
+    line-height: 1;
+}
+
+/* El menú lateral queda debajo de la barra superior (tablet y computadora) */
+.fv-menu {
+    top: calc(var(--cli-cab) + 16px);
+    height: calc(100vh - var(--cli-cab) - 32px);
+}
+@media (max-width: 767.98px) {
+    .fv-menu { top: 0; height: 100vh; }   /* teléfono: cajón a pantalla completa */
+}
+
+/* ───────────── Contenido ───────────── */
+.cli-pagina { max-width: 1040px; margin: 0; }
+
+/* Pestañas (Por entregar / Entregados · Deudas / Pagados) */
+.cli-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+.cli-tab {
+    flex: 0 1 258px;
+    min-width: 130px;
+    padding: .7rem 1rem;
+    border: 2px solid #111;
+    border-radius: 999px;
+    background: var(--cli-oliva-osc);
+    color: #fff;
+    font: 700 1.05rem 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: background .15s ease;
+}
+.cli-tab:hover { background: #7d8f47; }
+.cli-tab.activa { background: var(--cli-oliva); }
+.cli-tab:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+.cli-panel[hidden] { display: none; }
+
+/* Tarjeta crema */
+.cli-card {
+    background: var(--fv-tarjeta);
+    color: #1b1b1b;
+    border-radius: 28px;
+    padding: 16px 22px 20px;
+    margin-bottom: 16px;
+}
+.cli-card__cab {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 8px;
+}
+.cli-card__titulo {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--fv-verde);
+}
+.cli-card__fecha {
+    margin-left: 8px;
+    font-size: .85rem;
+    font-weight: 500;
+    color: #777;
+}
+
+/* Botón "Detalles" */
+.cli-detalles {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: .25rem .9rem;
+    border: 0;
+    border-radius: 8px;
+    background: #e8e8e8;
+    color: #111;
+    font: 500 .95rem 'Montserrat', sans-serif;
+    cursor: pointer;
+}
+.cli-detalles:hover { background: #dadada; }
+
+/* Productos de un pedido */
+.cli-productos {
+    border-left: 4px solid var(--fv-verde);
+    padding: 4px 0 4px 16px;
+    margin-top: 4px;
+}
+.cli-productos__cab {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+.cli-total {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--fv-verde);
+    white-space: nowrap;
+}
+.cli-total--grande { font-size: 1.35rem; }
+
+.cli-productos__lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.cli-productos__lista li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 3px 12px;
+    background: var(--cli-fila);
+    border: 1px solid var(--cli-fila-borde);
+    border-radius: 6px;
+    font-size: .92rem;
+    color: #555;
+}
+.cli-precio { white-space: nowrap; }
+
+.cli-estado {
+    display: inline-block;
+    margin: 14px 0 0 16px;
+    padding: .2rem .7rem;
+    border-radius: 999px;
+    background: #0d6efd;
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 700;
+}
+
+/* Filas de Crédito */
+.cli-fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin-top: 14px;
+    padding: 12px 18px;
+    background: var(--cli-gris);
+    border-radius: 24px;
+}
+.cli-fila__info { display: flex; flex-direction: column; }
+.cli-fila__pedido { font-size: 1.2rem; font-weight: 700; color: var(--fv-verde); }
+.cli-fila__total  { font-size: 1.05rem; font-weight: 700; color: #000; }
+.cli-fila__lado   { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.cli-fila__fecha  { font-size: .9rem; color: #888; }
+
+.cli-vacio {
+    padding: 18px;
+    border-radius: 20px;
+    background: var(--fv-tarjeta);
+    color: #555;
+    text-align: center;
+}
+.cli-vacio--interno { background: transparent; padding: 12px 0 0; }
+
+/* ───────────── Mis datos ───────────── */
+.cli-datos { padding: 28px clamp(18px, 4vw, 30px) 24px; }
+
+.cli-avatar {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 6px solid #000;
+    border-radius: 50%;
+    font-size: 4.6rem;
+    color: #000;
+}
+.cli-datos__primer {
+    text-align: center;
+    margin: 0 0 22px;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+.cli-datos__lista { margin: 0 0 22px; }
+.cli-datos__lista > div { display: flex; flex-wrap: wrap; gap: 0 8px; }
+.cli-datos__lista dt { font-weight: 700; }
+.cli-datos__lista dd { margin: 0; overflow-wrap: anywhere; }
+
+.cli-aviso {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-left: 20px;
+    background: var(--cli-gris);
+    border-radius: 18px;
+    font-weight: 700;
+}
+.cli-aviso > span { padding: 12px 0; }
+
+.cli-boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: .9rem 2rem;
+    border: 0;
+    border-radius: 999px;
+    background: var(--fv-verde);
+    color: #fff;
+    font: 700 1rem 'Montserrat', sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+}
+.cli-boton:hover { background: #14472b; color: #fff; }
+.cli-aviso .cli-boton { border-radius: 18px; align-self: stretch; padding: 0 2.2rem; }
+.cli-boton--centro { display: flex; width: fit-content; margin: 14px auto 0; }
+
+.cli-datos__ayuda {
+    margin: 14px 8px 0;
+    color: #777;
+    font-size: .95rem;
+}
+
+/* ───────────── Modales (Detalles y Aviso) ───────────── */
+.cli-modal { background: var(--fv-tarjeta); color: #1b1b1b; }
+.cli-modal .modal-header { border-bottom: 2px solid #000; }
+.cli-modal .modal-title  { font-weight: 800; color: #000; }
+.cli-modal .table { --bs-table-bg: transparent; --bs-table-color: #1b1b1b; }
+.cli-modal .table thead { --bs-table-bg: var(--fv-tabla-cab); --bs-table-color: var(--fv-verde); }
+
+.cli-aviso-modal .modal-body { color: #666; text-align: justify; }
+.cli-aviso-modal h6 { color: #555; font-weight: 700; margin-top: 18px; }
+.cli-aviso-modal__marca {
+    text-align: center;
+    margin: 0 0 6px;
+    font-family: 'Chewy', 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    color: #12c25a;
+}
+.cli-aviso-modal .modal-title { font-size: 1.7rem; }
+.cli-aviso-modal .form-check-label { font-size: .88rem; color: #444; }
+.cli-aviso-modal .form-check-input:checked { background-color: var(--fv-verde); border-color: var(--fv-verde); }
+
+/* ───────────── Teléfono ───────────── */
+@media (max-width: 767.98px) {
+    .cli-cabecera__logo { height: 44px; }
+    .cli-tabs { gap: 10px; }
+    .cli-tab  { flex: 1 1 calc(50% - 5px); min-width: 0; font-size: .95rem; padding: .65rem .5rem; }
+
+    .cli-card { border-radius: 22px; padding: 14px 14px 16px; }
+    .cli-productos { padding-left: 10px; }
+    .cli-productos__cab { flex-wrap: wrap; }
+    .cli-total, .cli-total--grande { font-size: 1.15rem; }
+    .cli-estado { margin-left: 10px; }
+
+    .cli-fila__lado { align-items: flex-start; }
+    .cli-avatar { width: 120px; height: 120px; font-size: 3.6rem; }
+    .cli-aviso .cli-boton { padding: 0 1.4rem; }
+    .cli-boton--centro { width: 100%; }
+    .cli-aviso-modal .modal-body { text-align: left; }
+    .cli-aviso-modal .modal-footer { flex-direction: column; align-items: stretch; }
+    .cli-aviso-modal .modal-footer .cli-boton { padding: .7rem; }
+}
