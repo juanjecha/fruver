@@ -26,9 +26,9 @@ if (!function_exists('ubicacion_parsear')) {
 
 if (!function_exists('ubicacion_formatear')) {
     // Arma el par que se guarda en la base de datos
-    function ubicacion_fomatear(float $lat, float $lng) : string
+    function ubicacion_formatear(float $lat, float $lng) : string
     {
-        return number_format($lat, 6, '.', '') . number_format($lng, 6, '.', '');
+        return number_format($lat, 6, '.', '') . ',' . number_format($lng, 6, '.', '');
     }
 }
 
@@ -48,7 +48,7 @@ if (!function_exists('ubicacion_mostrar')) {
             return esc($valor) . ' <span class="badge bg-warning text-dark"> sin coordenadas </span>';
         }
 
-        $texto = ubicacion_fomatear($punto['lat'], $punto['lng']);
+        $texto = ubicacion_formatear($punto['lat'], $punto['lng']);
         $url = "https://www.google.com/maps/search/?api=1&query=" . rawurlencode($texto);
 
         return '<a href ="' . esc($url, 'attr') . '" target="_blank" rel="noopener"> ' . esc($texto). '</a>';

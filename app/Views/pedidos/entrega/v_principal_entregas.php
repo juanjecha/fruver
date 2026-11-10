@@ -24,6 +24,11 @@ $puedeActualizarEntrega = $soloMias && puede('pedidos.cambiar_estado');
             <small><?= $soloMias ? 'Pedidos que se te asignaron para hoy' : 'Administra las entregas de hoy' ?></small>
         </div>
         <?php if ($soloMias): ?>
+            
+            <?php if (puede('entregas.recorrido')): ?>
+                <a href="<?= base_url('recorrido_dia') ?>" class="btn btn-success"><i class="fa-solid fa-route me-1"></i> Comenzar recorrido del día</a>
+            <?php endif; ?>
+
             <button type="button" class="btn btn-outline-primary" id="btnMostrarHistorial"><i class="fa-solid fa-clock-rotate-left me-1"></i> Historial</button>
         <?php endif; ?>
     </div>

@@ -167,3 +167,8 @@ $routes->post('asignar_repartidor', 'Pedidos\EntregaController::asignar_repartid
 
 //ruta sin filtro para el saber si sigue la sesión o no
 $routes->get('sesion/estado', 'auth\AuthController::estado');
+
+//recorrido del día
+$routes->get('recorrido_dia', 'Pedidos\RecorridoController::index', ['filter' => 'permiso:entregas.recorrido, entregas.ver_arboles']);
+$routes->get('recorrido_arboles', 'Pedidos\RecorridoController::arboles', ['filter' => 'permiso:entregas.recorrido,entregas.ver_arbol']);
+$routes->post('recorrido_iniciar', 'Pedidos\RecorridoController::iniciar', ['filter' => 'permiso:entregas.recorrido']);

@@ -81,6 +81,8 @@ class Menu extends BaseConfig
                  'permisos' => ['pedidos.ver', 'pedidos.ver_propios']],
                  ['etiqueta' => 'Gestión de Pedidos', 'icono' => 'fa-truck', 'url' => 'gestion_entregas',
                 'permisos' => ['entregas.ver_pendientes'], 'activo_en' => ['entregas', 'gestion_entregas']],
+                ['etiqueta' => 'Recorrido del día', 'icono' => 'fa-route', 'url' => 'recorrido_dia',
+                'permisos' => ['entregas.recorrido', 'entregas.ver_arboles'], 'activo_en' => ['recorrido_dia']],
                 ['etiqueta' => 'Historial de Pedidos Entregados', 'icono' => 'fa-clock-rotate-left', 'url' => 'historial_entregas',
                  'permisos' => ['entregas.ver_historial'], 'activo_en' => ['historial_entregas']],
             ],
@@ -111,6 +113,8 @@ class Menu extends BaseConfig
             'items'    => [
                 ['etiqueta' => 'Gestión de entregas', 'icono' => 'fa-truck', 'url' => 'gestion_entregas',
                 'permisos' => ['entregas.ver_pendientes'], 'activo_en' => ['entregas']],
+                ['etiqueta' => 'Recorrido del día', 'icono' => 'fa-route', 'url' => 'recorrido_dia',
+                 'permisos' => ['entregas.recorrido', 'entregas.ver_arboles'], 'activo_en' => ['recorrido_dia']],
             ],
         ],
     ];

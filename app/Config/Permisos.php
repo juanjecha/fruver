@@ -23,6 +23,7 @@ class Permisos extends BaseConfig
             'pedidos.*', 'pedidos.pagos', 'pedidos.asignar_repartidor',
             'creditos.dar', 'creditos.registrar_bonos', 'creditos.ver_deudores',
             'notificaciones.ver',
+            'entregas.ver_arboles', 
         ],
 
         'vendedor_avanzado' => [
@@ -31,6 +32,7 @@ class Permisos extends BaseConfig
             'pedidos.*', 'pedidos.pagos', 'pedidos.asignar_repartidor',
             'creditos.dar', 'creditos.registrar_bonos',
             'notificaciones.ver',
+            'entregas.ver_arboles', 
         ],
 
         'repartidor_avanzado' => [
@@ -40,6 +42,7 @@ class Permisos extends BaseConfig
             'pedidos.ver', 'pedidos.cambiar_estado', 'pedidos.detalle',
             'entregas.ver_pendientes',
             'notificaciones.ver', 'privacidad.ver',
+            'entregas.recorrido',  
         ],
 
         'repartidor' => [
@@ -47,6 +50,7 @@ class Permisos extends BaseConfig
             'pedidos.cambiar_estado',
             'entregas.ver_pendientes',
             'notificaciones.ver', 'privacidad.ver',
+            'entregas.recorrido',  
         ],
 
         'cliente' => [

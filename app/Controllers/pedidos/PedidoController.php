@@ -124,7 +124,7 @@ class PedidoController extends BaseController
                 [
                     'fecha_entrega'    => $this->request->getPost('fecha_entrega'),
                     'id_cliente1'      => $this->request->getPost('id_cliente'),
-                    'direccion_pedido' => ubicacion_fomatear($punto['lat'], $punto['lng'])
+                    'direccion_pedido' => ubicacion_formatear($punto['lat'], $punto['lng'])
                 ],
                 $this->request->getPost('productos') ?? [],
                 $totalGeneral
@@ -212,7 +212,7 @@ class PedidoController extends BaseController
         $datosPedido = [
             'id_cliente1'      => $this->request->getPost('id_cliente'),
             'fecha_entrega'    => $this->request->getPost('fecha_entrega'),
-            'direccion_pedido' => ubicacion_fomatear($punto['lat'], $punto['lng']),
+            'direccion_pedido' => ubicacion_formatear($punto['lat'], $punto['lng']),
         ];
  
         $pedidoModel->update($id_pedido, $datosPedido);
