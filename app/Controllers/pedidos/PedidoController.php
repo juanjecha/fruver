@@ -86,6 +86,13 @@ class PedidoController extends BaseController
 
     public function guarda_pedido()
     {
+        // La ubicación llega como "lat,lng" desde el mapa
+        $punto = ubicacion_parsear($this->request->getPost('direccion'));
+        if ($punto === null) {
+            echo "error_validacion: Selecciona la ubicación de entrega";
+            return;
+        }
+
         $rules = [
             'id_cliente'               => 'required|is_natural_no_zero',
             'fecha_entrega'            => 'required|valid_date',
@@ -117,7 +124,7 @@ class PedidoController extends BaseController
                 [
                     'fecha_entrega'    => $this->request->getPost('fecha_entrega'),
                     'id_cliente1'      => $this->request->getPost('id_cliente'),
-                    'direccion_pedido' => $this->request->getPost('direccion'),
+                    'direccion_pedido' => ubicacion_fomatear($punto['lat'], $punto['lng'])
                 ],
                 $this->request->getPost('productos') ?? [],
                 $totalGeneral
@@ -193,12 +200,19 @@ class PedidoController extends BaseController
         $pedidoModel  = new PedidoModel();
  
         $id_pedido = $this->request->getPost('id_pedido');
+
+        //validación 
+        $punto = ubicacion_parsear($this->request->getPost('direccion'));
+        if ($punto === null) {
+            echo "error_validacion: Selcciona la ubicación de entrega";
+            return;
+        }
  
         //Solo los campos generales del pedido (sin tocar los productos todavía)
         $datosPedido = [
             'id_cliente1'      => $this->request->getPost('id_cliente'),
             'fecha_entrega'    => $this->request->getPost('fecha_entrega'),
-            'direccion_pedido' => $this->request->getPost('direccion'),
+            'direccion_pedido' => ubicacion_fomatear($punto['lat'], $punto['lng']),
         ];
  
         $pedidoModel->update($id_pedido, $datosPedido);

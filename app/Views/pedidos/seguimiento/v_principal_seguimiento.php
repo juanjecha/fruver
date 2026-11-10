@@ -120,7 +120,7 @@ $soloLecturaRepartidor = session('rol') === 'repartidor_avanzado';
             <td><?= estrella_cliente($pedido['cliente_preferencial']) ?> <?= esc($pedido['cliente']) ?></td>
             <td><?= $pedido['fecha'] ?></td>
             <td><?= esc($pedido['fecha_entrega'] ?? 'Sin fecha') ?></td>
-            <td><?= esc($pedido['direccion_pedido'] ?? 'No especificada') ?></td>
+            <td><?= ubicacion_mostrar($pedido['direccion_pedido'] ?? '') ?></td>
             <td><?= esc(($pedido['pago'] ?? '') === 'contado' ? 'Contado' : ((($pedido['pago'] ?? '') === 'credito') ? 'Crédito' : 'No definido')) ?></td>
             <td>$<?= number_format($total_pedido, 2) ?></td>
             <td>

@@ -11,7 +11,7 @@ use Psr\Log\LoggerInterface;
 abstract class BaseController extends Controller
 {
     /** Helpers disponibles en todos los controladores y vistas (puede() vive en 'permisos'). */
-    protected $helpers = ['permisos','cliente'];
+    protected $helpers = ['permisos','cliente', 'ubicacion'];
 
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {

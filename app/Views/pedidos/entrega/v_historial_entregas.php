@@ -64,7 +64,7 @@
                         <tr>
                             <td><span class="historial-numero">#<?= (int) $pedido['id_pedido'] ?></span></td>
                             <td><?= esc($pedido['cliente']) ?></td>
-                            <td class="historial-direccion"><?= esc($pedido['direccion_pedido'] ?? 'No especificada') ?></td>
+                            <td class="historial-direccion"><?= ubicacion_mostrar($pedido['direccion_pedido'] ?? '') ?></td>
                             <td><?= esc($fechaEntregaTexto) ?></td>
                             <td><span class="badge bg-<?= $colorEstado ?>"><?= esc(ucfirst($estado)) ?></span></td>
                             <td><?= esc($pago) ?></td>

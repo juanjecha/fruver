@@ -134,7 +134,7 @@ $puedeActualizarEntrega = $soloMias && puede('pedidos.cambiar_estado');
                 <div class="entrega-item__info">
                     <div><strong>Cliente:</strong> <?= estrella_cliente($pedido['cliente_preferencial']) ?> <?= esc($pedido['cliente']) ?></div>
                     <div><strong>Teléfono:</strong> <?= esc($pedido['telefono'] ?? 'N/A') ?></div>
-                    <div><strong>Dirección:</strong> <?= esc($pedido['direccion_pedido'] ?? 'No especificada') ?></div>
+                    <div><strong>Dirección:</strong> <?= ubicacion_mostrar($pedido['direccion_pedido'] ?? '') ?></div>
                     <?php if (! $soloMias): ?>
                     <div><strong>Repartidor:</strong> <?= esc($pedido['repartidor'] ?? 'No asignado') ?></div>
                     <?php endif; ?>
@@ -208,7 +208,7 @@ $puedeActualizarEntrega = $soloMias && puede('pedidos.cambiar_estado');
                 <?php $estadoHistorial = $hp['status'] ?? 'entregado'; $pagoHistorial = ($hp['pago'] ?? '') === 'contado' ? 'Contado' : ((($hp['pago'] ?? '') === 'credito') ? 'Crédito' : 'No definido'); ?>
                 <tr>
                     <td>#<?= (int) $hp['id_pedido'] ?></td><td><?= esc($hp['cliente']) ?></td>
-                    <td><?= esc($hp['direccion_pedido'] ?? 'No especificada') ?></td>
+                    <td><?= ubicacion_mostrar($hp['direccion_pedido'] ?? '') ?></td>
                     <td><?= esc(!empty($hp['fecha_entregado']) ? date('d/m/Y H:i', strtotime($hp['fecha_entregado'])) : 'Sin fecha') ?></td>
                     <td><span class="badge bg-success"><?= esc(ucfirst($estadoHistorial)) ?></span></td><td><?= esc($pagoHistorial) ?></td>
                     <td><button type="button" class="btn btn-outline-secondary btn-sm btnVerDetalle" data-id="<?= (int) $hp['id_pedido'] ?>">👁 Detalles</button></td>
@@ -311,6 +311,21 @@ $(document).on('click', '.btnCambiarEstadoEntrega', function () {
 $('#btnMostrarHistorial').on('click', function () { $('#panelGestionPedidos').hide(); $('#panelHistorialPedidos').show(); });
 $('#btnVolverGestion').on('click', function () { $('#panelHistorialPedidos').hide(); $('#panelGestionPedidos').show(); });
 const modalDetalle = new bootstrap.Modal(document.getElementById('modalDetalle'));
+
+
+//muestra la ubicación del pedido
+function ubicacionHtml(valor) {
+    const v = String(valor ?? '').trim();
+    if (v === '') return 'No especificada';
+    const esc = t => t.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    if (/^-?\d{1,2}(\.\d+)?,\s*-?\d{1,3}(\.\d+)?$/.test(v)) {
+        return '<a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(v) +
+               '" target="_blank" rel="noopener"> ' + esc(v) + '</a>';
+    }
+    return esc(v) + ' <span class="badge bg-warning text-dark"> sin coordenadas</span>';
+}
+
+
 // --------------- Ver detalles ---------------
 $(document).on('click', '.btnVerDetalle', function() {
     const idPedido = $(this).data('id');
@@ -415,7 +430,7 @@ $(document).on('click', '.btnVerDetalle', function() {
                             </div>
                             <div class="col-md-6">
                                 <div class="small text-muted">Dirección</div>
-                                <div class="fw-semibold">${p.direccion_pedido ?? 'No especificada'}</div>
+                                <div class="fw-semibold">${ubicacionHtml(p.direccion_pedido)}</div>
                             </div>
                             <div class="col-md-6">
                                 <div class="small text-muted">Estatus actual</div>

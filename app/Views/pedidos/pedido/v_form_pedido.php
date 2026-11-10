@@ -44,11 +44,7 @@
     </div>
 
     <!-- DIRECCIÓN -->
-    <div class="mb-3">
-        <label for="direccion" class="form-label fw-semibold">Dirección de Entrega</label>
-        <input type="text" name="direccion" id="direccion" class="form-control" placeholder="Dirección para la entrega" maxlength="200"
-               value="<?= esc($precarga['direccion'] ?? '') ?>">
-    </div>
+    <?= $this->include('pedidos/pedido/v_selector_ubicacion', ['ubicacionActual' => $precarga['direccion'] ?? '']) ?>
 
     <hr>
 
