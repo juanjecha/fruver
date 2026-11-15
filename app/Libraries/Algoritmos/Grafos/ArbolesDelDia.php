@@ -12,7 +12,7 @@ class ArbolesDelDia {
      * @param array<int, array{lat: float, lng: float}> $salidas punto de salida de hoy por id_repartidor
      * @return array{grupos: list<array>, sin_repartidor: int}
      */
-    public function calcular(array $pedidos, array $salidas): array
+    public function calcular(array $pedidos, array $salidas, ?array $salidaPorDefecto = null): array
     {
         helper('ubicacion');
 
@@ -36,6 +36,7 @@ class ArbolesDelDia {
                     'id_repartidor' => $id,
                     'repartidor' => $nombre !== '' ? $nombre : 'Repartidor ' . $id,
                     'salida' => null,
+                    'salida_por_defecto' => false,
                     'paradas' => [],
                     'sin_ubicacion' => [],
                     'arbol' => null,
@@ -62,18 +63,26 @@ class ArbolesDelDia {
         //cuando el repartidor elija su salida, se genera el árbol
         foreach (array_keys($grupos) as $id) {
             $salida = $salidas[$id] ?? null;
+            $porDefecto = false;
+
+            if ($salida === null && $salidaPorDefecto !== null) {
+                $salida = $salidaPorDefecto;
+                $porDefecto = true;
+            }
+
             $grupos[$id]['salida'] = $salida;
-            
+            $grupos[$id]['salida_por_defecto'] = $porDefecto;
+
             if ($salida === null || $grupos[$id]['paradas'] === []) {
                 continue;
             }
 
-            $r = $this->arbol->calcular($salida, $grupos[$id]['parada']);
+            $r = $this->arbol->calcular($salida, $grupos[$id]['paradas']);
 
             $grupos[$id]['arbol'] = [
                 'nodos' => $r['nodos'],
-                'artistas' => array_map(
-                    static fn (array $a) => ['desde' => $a['desde'], 'hasta' => $a['hasta'], 'metros' => round($a['metros'], )],
+                'aristas' => array_map(
+                    static fn (array $a) => ['desde' => $a['desde'], 'hasta' => $a['hasta'], 'metros' => round($a['metros'], 1)],
                     $r['aristas']
                 ),
                 'costo_metros' => round($r['costo_metros'], 1),

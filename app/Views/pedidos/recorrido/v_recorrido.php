@@ -107,8 +107,14 @@
             });
 
             if (g.salida) {
-                L.circleMarker([g.salida.lat, g.salida.lng], { radius: 11, color: color, weight: 4, fillColor: '#ffffff', fillOpacity: 1 })
-                    .bindTooltip('Salida · ' + esc(g.repartidor)).addTo(capa);
+                /*
+                    Salida predeterminada: contorno punteado
+                    Salida elegida: contorno sólido
+                */
+                var porDefecto = !!g.salida_por_defecto;
+
+                L.circleMarker([g.salida.lat, g.salida.lng], { radius: 11, color: color, weight: 4, dashArray: porDefecto ? '4 4' : null, fillColor: '#ffffff', fillOpacity: 1 })
+                    .bindTooltip((porDefecto ? 'Salida predeterminada' : 'Salida') + ' . ' + esc(g.repartidor)).addTo(capa);
                 limites.push([g.salida.lat, g.salida.lng]);
             }
         });
@@ -128,9 +134,11 @@
         }
         datos.grupos.forEach(function (g, i) {
             var color = COLORES[i % COLORES.length];
+
+            var etiquetaSalida = g.salida_por_defecto ? ' . <span class="badge bg-secondary">salida predeterminada</span>' : '';
             var estado = g.arbol
-                ? 'Árbol: ' + km(g.arbol.costo_metros) + ' · ' + g.arbol.aristas.length + ' conexión(es)'
-                : (g.salida ? 'Sin pedidos con ubicación' : '<span class="badge bg-secondary">No ha iniciado su recorrido</span>');
+                ? 'Árbol: ' + km(g.arbol.costo_metros) + ' · ' + g.arbol.aristas.length + ' conexión(es)' + etiquetaSalida
+                : (g.salida ? 'Sin pedidos con ubicación' + etiquetaSalida : '<span class="badge bg-secondary">Sin punto de salida</span>');
 
             html += '<div class="card p-3 mb-2">' +
                     '<div class="fw-semibold"><span class="punto-color" style="background:' + color + '"></span>' + esc(g.repartidor) + '</div>' +
@@ -174,7 +182,7 @@
             return;
         }
 
-        if (g.salida) {
+        if (g.salida && !g.salida_por_defecto) {
             var resumen = g.paradas.length + ' pedido(s) con ubicación' + (g.arbol ? ' · árbol de ' + km(g.arbol.costo_metros) : '');
             panel.innerHTML =
                 '<div class="card p-3 d-flex flex-row flex-wrap align-items-center justify-content-between gap-2">' +
@@ -184,9 +192,24 @@
         } else {
             panel.innerHTML =
                 '<div class="card p-3 d-flex flex-row flex-wrap align-items-center justify-content-between gap-2">' +
-                '<div><div class="fw-semibold">Aún no comienzas tu recorrido de hoy</div>' +
-                '<div class="small">Elige desde dónde sales y se calculará el árbol con tus ' + g.paradas.length + ' pedido(s).</div></div>' +
-                '<button type="button" class="btn btn-success" data-accion="comenzar"><i class="fa-solid fa-route me-1"></i> Comenzar recorrido del día</button></div>';
+                    '<div>' +
+                        '<div class="fw-semibold">Aún no eliges punto de salida</div>' +
+                        '<div class="small">' +
+                            (
+                                g.salida
+                                    ? 'Sales de este punto (' +
+                                    (datos.salida_defecto ? esc(datos.salida_defecto.nombre) : '') +
+                                    ') este es tu recorrido con ' +
+                                    g.paradas.length +
+                                    ' pedido(s). Si sales de otro lugar, elígelo.'
+                                    : 'Elige desde dónde saldrás'
+                            ) +
+                        '</div>' +
+                    '</div>' +
+                    '<button type="button" class="btn btn-success" data-accion="comenzar">' +
+                        '<i class="fa-solid fa-route me-1"></i> Comenzar recorrido del día' +
+                    '</button>' +
+                '</div>';
         }
     }
 
@@ -228,7 +251,7 @@
                 marcadorSalida = null;
                 capaSeleccion.clearLayers();
                 var g = miGrupo();
-                if (g && g.salida) { elegir(g.salida.lat, g.salida.lng); }   // propone la salida actual
+                if (g && g.salida && !g.salida_por_defecto) { elegir(g.salida.lat, g.salida.lng); }   // propone la salida actual
                 pintarControles();
                 break;
 

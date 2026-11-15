@@ -28,13 +28,19 @@ class RecorridoController extends BaseController
         $pedidos = (new PedidoModel())->getPedidosEntregaHoy($miRepartidor !== null ? (string) $miRepartidor : null);
         $salidas = (new RecorridoModel())->salidasDeHoy();
 
-        $resultado = (new ArbolesDelDia(new ArbolEntregas(new Haversine())))->calcular($pedidos, $salidas);
+
+        $ajustes = config('Recorrido');
+        $salidaPorDefecto = ['lat' => (float) $ajustes->salidaLat, 'lng' => (float) $ajustes->salidaLng];
+
+        $resultado = (new ArbolesDelDia(new ArbolEntregas(new Haversine())))->calcular($pedidos, $salidas, $salidaPorDefecto);
+
 
         return $this->response->setJSON([
             'puede_iniciar'  => $miRepartidor !== null && $miRepartidor > 0,
             'mi_repartidor'  => ($miRepartidor !== null && $miRepartidor > 0) ? $miRepartidor : null,
             'grupos'         => $resultado['grupos'],
             'sin_repartidor' => $resultado['sin_repartidor'],
+            'salida_defecto' => $salidaPorDefecto + ['nombre' => $ajustes->salidaNombre],
         ]);
     }
 

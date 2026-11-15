@@ -65,4 +65,24 @@ final class ArbolesDelDiaTest extends TestCase
         $this->assertSame([], $r['grupos']);
         $this->assertSame(1, $r['sin_repartidor']);
     }
+
+    public function testSinSalidaElegidaUsaLaPredeterminada(): void
+    {
+        $predeterminada = ['lat' => 19.0414, 'lng' => -98.2063];
+        $r = $this->servicio()->calcular([$this->pedido(1, 7, '19.0450,-98.2000')], [], $predeterminada);
+
+        $this->assertSame($predeterminada, $r['grupos'][0]['salida']);
+        $this->assertSame(true, $r['grupos'][0]['salida_por_defecto']);
+        $this->assertCount(1, $r['grupos'][0]['arbol']['aristas']);
+    }
+
+    public function testLaSalidaElegidaTienePrioridadSobreLaPredeterminada(): void
+    {
+        $elegida        = ['lat' => 19.0300, 'lng' => -98.2100];
+        $predeterminada = ['lat' => 19.0414, 'lng' => -98.2063];
+        $r = $this->servicio()->calcular([$this->pedido(1, 7, '19.0450,-98.2000')], [7 => $elegida], $predeterminada);
+
+        $this->assertSame($elegida, $r['grupos'][0]['salida']);
+        $this->assertSame(false, $r['grupos'][0]['salida_por_defecto']);
+    }
 }

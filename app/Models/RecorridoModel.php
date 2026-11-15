@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Models;
 use CodeIgniter\Model;
 
 class RecorridoModel extends Model {
@@ -28,7 +29,7 @@ class RecorridoModel extends Model {
         return (bool) $this->db->query(
             "INSERT INTO recorrido (id_repartidor, fecha, lat, lng)
             VALUES (?, CURDATE(), ?, ?)
-            ON DUPLICATE KEY UPDATE lat = VALUES(lat), lng = VALUES(lng), iniciando_en = CURRENT_TIMESTAMP",
+            ON DUPLICATE KEY UPDATE lat = VALUES(lat), lng = VALUES(lng), iniciado_en = CURRENT_TIMESTAMP",
             [$idRepartidor, $lat, $lng]
         );
     }
