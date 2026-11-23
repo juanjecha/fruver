@@ -34,6 +34,31 @@ class RecorridoController extends BaseController
 
         $resultado = (new ArbolesDelDia(new ArbolEntregas(new Haversine())))->calcular($pedidos, $salidas, $salidaPorDefecto);
 
+        $ors = new \App\Libraries\Rutas\OpenRouteService($ajustes->orsApiKey, $ajustes->orsPerfil, $ajustes->orsMaxNuevasPorPeticion);
+
+        foreach ($resultado['grupos'] as &$g) {
+            if (! $g['arbol']) {
+                continue;
+            }
+            $totalCalles = 0.0;
+            $completo = true;
+
+            foreach ($g['arbol']['aristas'] as &$a) {
+                $ruta = $ors->ruta($g['arbol']['nodos'][$a['desde']], $g['arbol']['nodos'][$a['hasta']]);
+                if ($ruta) {
+                    $a['trazo'] = $ruta['puntos'];
+                    $a['metros_calle'] = round($ruta['metros'], 1);
+                    $totalCalles += $ruta['metros'];
+                } else {
+                    $completo = false;
+                }
+                unset($a);
+
+                //solo si todas las aristas tienen trazo real; si no, el JS usa factor_calles
+                $g['arbol']['costo_metros_calles'] = $completo ? round($totalCalles, 1) : null;
+            }
+            unset($g);
+        }
 
         return $this->response->setJSON([
             'puede_iniciar'  => $miRepartidor !== null && $miRepartidor > 0,

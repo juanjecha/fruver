@@ -19,4 +19,10 @@ class Recorrido extends BaseConfig {
     /** Semaforo de consumo: hasta litrosBajo = verde, hasta litrosAlto = amarillo, más = rojo. */
     public float $litrosBajo = 1.5;
     public float $litrosAlto = 3.0;
+
+
+    /** OpenRouteService: trazo por calles. Sin key se usan líneas rectas. */
+    public string $orsApiKey = '';
+    public string $orsPerfil = 'driving-car';
+    public int $orsMaxNuevasPorPeticion = 30;
 }

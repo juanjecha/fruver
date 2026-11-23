@@ -48,6 +48,8 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(mapa);
 
+    mapa.attributionControl.addAttribution('Rutas © <a href="https://openrouteservice.org">openrouteservice</a>');
+
     var capa = L.layerGroup().addTo(mapa);            // puntos y aristas de los árboles (se borra y redibuja)
     var capaSeleccion = L.layerGroup().addTo(mapa);   // marcador temporal al elegir la salida
     var datos = null;
@@ -94,8 +96,10 @@
             if (g.arbol) {
                 g.arbol.aristas.forEach(function (a) {
                     var A = g.arbol.nodos[a.desde], B = g.arbol.nodos[a.hasta];
-                    L.polyline([[A.lat, A.lng], [B.lat, B.lng]], { color: color, weight: 4, opacity: 0.85 })
-                        .bindTooltip(km(a.metros)).addTo(capa);
+                    var puntos = a.trazo || [[A.lat, A.lng], [B.lat, B.lng]];
+                    L.polyline(puntos, { color: color, weight: 4, opacity: 0.85, dashArray: a.trazo ? null : '6 6' })
+                        .bindTooltip(km(a.metros_calle || a.metros) + (a.trazo ? ' por calle' : ' en línea recta'))
+                        .addTo(capa);
                 });
             }
 
@@ -138,6 +142,9 @@
     }
     function calcularCombustible(g) {
         var c = datos.combustible;
+        var metros = g.arbol.costo_metros_calles != null
+        ? g.arbol.costo_metros_calles
+        : g.arbol.costo_metros * c.factor_calles;
         var vehiculo = vehiculoDe(g.id_repartidor);
         var metros = g.arbol.costo_metros * c.factor_calles;
         var litros = (metros / 1000) / c.rendimiento[vehiculo];       // combustible = distancia / rendimiento
