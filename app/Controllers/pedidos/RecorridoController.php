@@ -41,6 +41,14 @@ class RecorridoController extends BaseController
             'grupos'         => $resultado['grupos'],
             'sin_repartidor' => $resultado['sin_repartidor'],
             'salida_defecto' => $salidaPorDefecto + ['nombre' => $ajustes->salidaNombre],
+            'combustible'    => [
+                'rendimiento'      => $ajustes->rendimientoKmPorLitro,
+                'vehiculo_defecto' => $ajustes->vehiculoPorDefecto,
+                'precio_litro'     => $ajustes->precioGasolina,
+                'factor_calles'    => $ajustes->factorCalles,
+                'litros_bajo'      => $ajustes->litrosBajo,
+                'litros_alto'      => $ajustes->litrosAlto,
+            ],
         ]);
     }
 
@@ -65,7 +73,7 @@ class RecorridoController extends BaseController
         return $this->response->setJSON(['ok' => true]);
     }
 
-    /** Igual que en EntregaController: id del repartidor de la sesión, -1 si no está vinculado, null si no es repartidor. */
+    /** Igual que en EntregaController: id del repartidor de la sesion, -1 si no está vinculado, null si no es repartidor. */
     private function repartidorDeLaSesion(): ?int
     {
         if (! in_array(session('rol'), ['repartidor', 'repartidor_avanzado'], true)) {

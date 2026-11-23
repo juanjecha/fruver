@@ -54,6 +54,7 @@
     var seleccionando = false;
     var puntoElegido = null;
     var marcadorSalida = null;
+    var vehiculos = {};   // vehículo elegido por repartidor (id_repartidor -> 'moto' | 'carro')
 
     // ---------- utilidades ----------
     function esc(t) {   // los nombres de clientes vienen de la BD: se escapan antes de ponerlos en HTML
@@ -126,6 +127,39 @@
         pintarControles();
     }
 
+    // ---------- combustible ----------
+    function vehiculoDe(id) {
+        if (vehiculos[id]) { return vehiculos[id]; }
+        var v = null;
+        try { v = localStorage.getItem('fruver_vehiculo_' + id); } catch (e) { v = null; }
+        if (!v || !datos.combustible.rendimiento[v]) { v = datos.combustible.vehiculo_defecto; }
+        vehiculos[id] = v;
+        return v;
+    }
+    function calcularCombustible(g) {
+        var c = datos.combustible;
+        var vehiculo = vehiculoDe(g.id_repartidor);
+        var metros = g.arbol.costo_metros * c.factor_calles;
+        var litros = (metros / 1000) / c.rendimiento[vehiculo];       // combustible = distancia / rendimiento
+        var nivel = litros <= c.litros_bajo ? 'bajo' : (litros <= c.litros_alto ? 'medio' : 'alto');
+        return { vehiculo: vehiculo, metros: metros, litros: litros, costo: litros * c.precio_litro, nivel: nivel };
+    }
+    function bloqueCombustible(g) {
+        var r = calcularCombustible(g);
+        var clase = { bajo: 'bg-success', medio: 'bg-warning text-dark', alto: 'bg-danger' }[r.nivel];
+        return '<div class="mt-2 pt-2 border-top small">' +
+               '<div class="d-flex align-items-center justify-content-between gap-2 mb-1">' +
+               '<span class="fw-semibold"><i class="fa-solid fa-gas-pump me-1"></i>Gasolina estimada</span>' +
+               '<select class="form-select form-select-sm w-auto" data-vehiculo="' + g.id_repartidor + '" aria-label="Tipo de vehículo">' +
+               '<option value="moto"' + (r.vehiculo === 'moto' ? ' selected' : '') + '>Moto</option>' +
+               '<option value="carro"' + (r.vehiculo === 'carro' ? ' selected' : '') + '>Carro</option>' +
+               '</select></div>' +
+               '<div>Distancia de la ruta: ≈ ' + km(r.metros) + '</div>' +
+               '<div>Combustible: ≈ ' + r.litros.toFixed(2) + ' L · Costo: ≈ $' + r.costo.toFixed(2) + '</div>' +
+               '<span class="badge ' + clase + ' mt-1">Consumo ' + r.nivel + '</span>' +
+               '</div>';
+    }
+
     // ---------- lista lateral ----------
     function pintarLista() {
         var html = '';
@@ -143,6 +177,7 @@
             html += '<div class="card p-3 mb-2">' +
                     '<div class="fw-semibold"><span class="punto-color" style="background:' + color + '"></span>' + esc(g.repartidor) + '</div>' +
                     '<div class="small">' + g.paradas.length + ' pedido(s) en el mapa · ' + estado + '</div>';
+            if (g.arbol && datos.combustible) { html += bloqueCombustible(g); }
             if (g.sin_ubicacion.length) {
                 html += '<div class="small mt-1 text-warning"><i class="fa-solid fa-triangle-exclamation me-1"></i>' +
                         'Sin ubicación (no entran al árbol): ' +
@@ -289,6 +324,15 @@
                 .catch(function () { avisar('No se pudo guardar el punto de salida.'); });
                 break;
         }
+    });
+
+    // Cambiar moto/carro: solo recalcula, no vuelve a pedir datos al servidor.
+    document.getElementById('listaRepartidores').addEventListener('change', function (e) {
+        var sel = e.target.closest('[data-vehiculo]');
+        if (!sel) { return; }
+        vehiculos[sel.dataset.vehiculo] = sel.value;
+        try { localStorage.setItem('fruver_vehiculo_' + sel.dataset.vehiculo, sel.value); } catch (err) { /* sin almacenamiento: queda solo en esta sesión */ }
+        pintarLista();
     });
 
     document.getElementById('btnActualizar').addEventListener('click', function () { cargar(true); });
