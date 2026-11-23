@@ -1,0 +1,137 @@
+/* Alta de pedido y Reutilizar pedido (se abren dentro del iframe del modal de Control de pedidos).
+   Misma paleta que Seguimiento / Control de pedidos / Clientes.
+   Como el iframe NO carga layout/base.css, las variables se declaran aquí. */
+
+:root {
+    --fv-tarjeta:   #f1efd1;
+    --fv-verde:     #1b5e3a;
+    --fv-tabla-cab: #c8debb;
+    --fv-campo:     #dbdac2;
+}
+
+body {
+    background: var(--fv-tarjeta);
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1b1b1b;
+    overflow-x: hidden;
+}
+
+#formPedido { animation: fadeInAlta .3s ease-out; }
+@keyframes fadeInAlta { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ── ETIQUETAS Y CAMPOS ── */
+.form-label {
+    color: var(--fv-verde);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 6px;
+}
+
+.form-control, .form-select {
+    background: var(--fv-campo);
+    border: 1.5px solid #f1f5f9;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #1b1b1b;
+    transition: all .2s;
+}
+.form-select-sm, .form-control-sm { padding: 6px 10px; }
+
+.form-control:focus, .form-select:focus {
+    background: #fff;
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, .12);
+    outline: none;
+}
+
+h6 { color: var(--fv-verde); font-weight: 700; }
+
+hr { border-top: 1px solid var(--fv-verde); opacity: .25; margin: 22px 0; }
+
+/* ── TABLA DE PRODUCTOS ── */
+.table-responsive {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+
+.table { margin-bottom: 0; --bs-table-bg: transparent; }
+
+.table thead th {
+    background: var(--fv-tabla-cab) !important;
+    color: var(--fv-verde);
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    border-bottom: 0;
+    white-space: nowrap;
+}
+.table thead th:first-child { border-radius: 8px 0 0 8px; }
+.table thead th:last-child  { border-radius: 0 8px 8px 0; }
+
+.table tbody td { border: 0; padding: 8px 5px; }
+
+/* Columnas con ancho mínimo: en celular la tabla hace scroll horizontal en vez de aplastarse */
+#tablaProductos .inp-cantidad,
+#tablaProductos .inp-precio { min-width: 90px; }
+#tablaProductos select      { min-width: 130px; }
+
+/* Total de cada producto (editable) */
+.subtotal-fila { color: var(--fv-verde); font-size: 14px; font-weight: 600; }
+#tablaProductos .inp-subtotal { min-width: 100px; }
+
+#totalGeneral { color: #1b1b1b; max-width: 160px; }
+
+/* ── AVISOS (copia de pedido / éxito) ── */
+.alert { border: 0; border-radius: 10px; font-size: 14px; }
+.alert-info    { background: var(--fv-tabla-cab); color: var(--fv-verde); }
+.alert-success { background: #dcfce7; color: #166534; }
+
+/* ── BOTONES ── */
+.btn { border-radius: 8px; font-weight: 600; }
+
+.btn-primary {
+    background: #16a34a;
+    border: none;
+    padding: 10px 20px;
+}
+.btn-primary:hover, .btn-primary:focus { background: #15803d; }
+
+.btn-outline-primary {
+    color: #16a34a;
+    border: 1.5px solid #16a34a;
+}
+.btn-outline-primary:hover { background: #16a34a; color: #fff; }
+
+.btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    padding: 10px 20px;
+}
+.btn-secondary:hover { background: #e2e8f0; color: #1e293b; }
+.btn-secondary.btn-sm { padding: 6px 12px; }
+
+.btn-danger.btn-sm {
+    background: transparent;
+    border: 0;
+    color: #dc2626;
+    font-size: 16px;
+    font-weight: 700;
+}
+.btn-danger.btn-sm:hover { background: #fee2e2; color: #991b1b; }
+
+/* ── RESPONSIVO ── */
+@media (max-width: 768px) {
+    .row > div { margin-bottom: 12px; }
+    .table-responsive { padding: 8px; }
+
+    /* Botones de abajo a lo ancho, "Guardar" arriba */
+    #formPedido > .d-flex.justify-content-end:last-child { flex-direction: column-reverse; gap: 10px !important; }
+    .btn-primary, .btn-secondary:not(.btn-sm) { width: 100%; }
+}

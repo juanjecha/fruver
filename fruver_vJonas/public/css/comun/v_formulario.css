@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════
+   Estilo ÚNICO de los formularios que se abren en el modal (iframe):
+   clientes, productos, repartidores, merma, entradas y pedidos.
+   Misma paleta que Seguimiento / Control de pedidos / Clientes.
+   El iframe NO carga layout/base.css, por eso las variables van aquí.
+   Funciona con formularios simples y con los que usan Bootstrap
+   (.form-label, .form-control, .form-select, .btn): cárgalo DESPUÉS de Bootstrap.
+   ══════════════════════════════════════════════════════════════════ */
+
+:root {
+    --fv-tarjeta:   #f1efd1;
+    --fv-verde:     #1b5e3a;
+    --fv-tabla-cab: #c8debb;
+    --fv-campo:     #dbdac2;
+    --fv-accion:    #16a34a;
+    --fv-accion-h:  #15803d;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 24px;
+    background: var(--fv-tarjeta);
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    color: #1b1b1b;
+    overflow-x: hidden;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    animation: fvFormEntrada .3s ease-out;
+}
+@keyframes fvFormEntrada { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+form br { display: none; }
+
+/* ── ETIQUETAS ── */
+label, .form-label {
+    display: block;
+    margin: 0 0 6px;
+    color: var(--fv-verde);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+/* ── CAMPOS ── */
+input[type="text"], input[type="tel"], input[type="number"], input[type="date"],
+input[type="email"], input[type="password"], textarea, select,
+.form-control, .form-select {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    background-color: var(--fv-campo);
+    border: 1.5px solid #f1f5f9;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #1b1b1b;
+    outline: none;
+    transition: all .2s;
+}
+textarea { min-height: 90px; resize: vertical; }
+
+input:focus, textarea:focus, select:focus,
+.form-control:focus, .form-select:focus {
+    background-color: #fff;
+    border-color: var(--fv-accion);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, .12);
+    outline: none;
+}
+
+input::placeholder, textarea::placeholder { color: #8a8a78; }
+
+/* Selects simples (sin Bootstrap): flecha propia para que se vean igual en todo navegador */
+select:not(.form-select):not(.form-select-sm) {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 34px;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231b5e3a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+}
+
+/* Campos de solo lectura (código del producto, conversión calculada...) */
+input[readonly], input:disabled, .campo-fijo {
+    background-color: var(--fv-tabla-cab);
+    color: var(--fv-verde);
+    font-weight: 600;
+    cursor: default;
+}
+
+/* Textos de ayuda */
+small, .ayuda, .foto-ayuda, .form-text {
+    color: #5c5c50;
+    font-size: 12px;
+}
+
+/* ── CASILLA (cliente preferencial, etc.) ── */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+.form-check .form-check-input,
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    float: none;
+    accent-color: var(--fv-accion);
+    cursor: pointer;
+}
+.form-check-label {
+    display: inline;
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+.estrella { color: #f5b301; }   /* ★ del cliente preferencial */
+
+/* ── REPARTIDORES: campos en columnas ── */
+.fila {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+}
+.campo { display: flex; flex-direction: column; gap: 6px; }
+.campo label { margin: 0; }
+
+/* ── FOTO DEL PRODUCTO ── */
+.foto-campo { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.foto-vista {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1.5px solid #e2e8f0;
+}
+.foto-vista[hidden] { display: none; }
+input[type="file"] { font-size: 13px; color: #1b1b1b; max-width: 100%; }
+
+/* ── FORMULARIOS CON BOOTSTRAP (entradas): mismo ritmo que los demás ── */
+hr { border-top: 1px solid var(--fv-verde); opacity: .25; margin: 8px 0; }
+h4, h6 { color: var(--fv-verde); font-weight: 700; }
+h4 { font-size: 1rem; margin: 0; }
+.alert { border: 0; border-radius: 10px; font-size: 14px; margin: 0; }
+.alert-info    { background: var(--fv-tabla-cab); color: var(--fv-verde); }
+.alert-warning { background: #fff3c4; color: #7a5b00; }
+.alert-success { background: #dcfce7; color: #166534; }
+.text-muted { color: #5c5c50 !important; }
+
+/* ── BOTONES ── */
+.btn, input[type="submit"], input[type="button"], button {
+    font-family: inherit;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+/* Acción principal: verde (guardar, registrar, actualizar) */
+input[type="submit"],
+.btn-primary, .btn-dark, .btn-warning, .btn-success {
+    background: var(--fv-accion);
+    border: 0;
+    color: #fff;
+    padding: 10px 24px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background .2s, transform .1s;
+}
+input[type="submit"]:hover,
+.btn-primary:hover, .btn-dark:hover, .btn-warning:hover, .btn-success:hover {
+    background: var(--fv-accion-h);
+    color: #fff;
+}
+input[type="submit"]:active { transform: scale(.97); }
+input[type="submit"]:disabled { opacity: .6; cursor: wait; }
+
+/* Acción secundaria: cancelar, recalcular */
+input[type="button"], .btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    padding: 10px 24px;
+    font-size: 14px;
+    cursor: pointer;
+}
+input[type="button"]:hover, .btn-secondary:hover { background: #e2e8f0; color: #1e293b; }
+.btn-sm { padding: 6px 12px; font-size: 13px; }
+
+.btn-outline-primary { background: transparent; color: var(--fv-accion); border: 1.5px solid var(--fv-accion); }
+.btn-outline-primary:hover { background: var(--fv-accion); color: #fff; }
+
+/* Quitar fila (✕) */
+.btn-danger.btn-sm { background: transparent; border: 0; color: #dc2626; font-size: 16px; font-weight: 700; }
+.btn-danger.btn-sm:hover { background: #fee2e2; color: #991b1b; }
+
+/* Renglón de botones al final del formulario */
+.btn-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 6px;
+}
+form > input[type="submit"] { align-self: flex-end; margin-top: 6px; }
+
+/* ── TELÉFONO ── */
+@media (max-width: 576px) {
+    body { padding: 16px; }
+
+    /* 16px evita el zoom automático de iPhone al enfocar un campo */
+    input[type="text"], input[type="tel"], input[type="number"], input[type="date"],
+    textarea, select, .form-control, .form-select { font-size: 16px; }
+
+    form > input[type="submit"] { align-self: stretch; width: 100%; }
+
+    .btn-row, .d-flex.justify-content-end.gap-2 { flex-direction: column-reverse; }
+    .btn-row input, .btn-row .btn,
+    .d-flex.justify-content-end.gap-2 .btn { width: 100%; }
+}

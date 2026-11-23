@@ -1,0 +1,205 @@
+/* ==========================================================================
+   FRUVER · Layout base (menú lateral + contenido + pantalla de inicio)
+   Responsivo: teléfono < 768 px · tablet 768–1199 px · computadora ≥ 1200 px
+   El estado del menú vive en la clase .fv-menu-abierto del <html>.
+   ========================================================================== */
+
+:root {
+    --fv-fondo:        #0a400f;
+    --fv-menu:         #9bb870;
+    --fv-menu-activo:  #d1e8b3;
+    --fv-tarjeta:      #f1efd1;
+    --fv-verde:        #1b5e3a;
+    --fv-tabla-cab:    #c8debb;
+    --fv-menu-ancho:   270px;
+    --fv-menu-riel:    76px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--fv-fondo);
+    color: #fff;
+    font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.fv-app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ───────────── Menú lateral ───────────── */
+.fv-menu {
+    flex: 0 0 var(--fv-menu-riel);
+    width: var(--fv-menu-riel);
+    position: sticky;
+    top: 16px;
+    height: calc(100vh - 32px);
+    margin: 16px 0;
+    padding: 14px 10px;
+    display: flex;
+    flex-direction: column;
+    background: var(--fv-menu);
+    color: #000;
+    border-radius: 0 28px 28px 0;
+    overflow: hidden;
+}
+
+.fv-listo .fv-menu {
+    transition: width .25s ease, flex-basis .25s ease, transform .25s ease;
+}
+
+.fv-menu-abierto .fv-menu {
+    flex-basis: var(--fv-menu-ancho);
+    width: var(--fv-menu-ancho);
+}
+
+.fv-menu__cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    margin-bottom: 14px;
+}
+
+.fv-menu-abierto .fv-menu__cabecera {
+    justify-content: space-between;
+    padding: 0 6px;
+}
+
+.fv-menu__titulo {
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.fv-menu__toggle {
+    border: 0;
+    background: transparent;
+    color: #111;
+    font-size: 1.6rem;
+    line-height: 1;
+    padding: 6px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.fv-menu__toggle:hover { background: rgba(255, 255, 255, .35); }
+
+.fv-menu__lista {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.fv-menu__pie {
+    border-top: 1px solid rgba(0, 0, 0, .15);
+    padding-top: 8px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.fv-menu__enlace {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 11px 12px;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: #000;
+    font: inherit;
+    font-weight: 700;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+.fv-menu__enlace i {
+    flex: 0 0 28px;
+    text-align: center;
+    font-size: 1.3rem;
+}
+.fv-menu__enlace:hover { background: rgba(255, 255, 255, .35); color: #000; }
+
+/* Sección en la que está el usuario */
+.fv-menu__enlace.activo { background: var(--fv-menu-activo); }
+
+/* Textos: solo visibles con el menú abierto (cerrado = solo íconos) */
+.fv-texto { display: none; }
+.fv-menu-abierto .fv-texto { display: inline; }
+
+/* ───────────── Contenido ───────────── */
+.fv-contenido {
+    flex: 1;
+    min-width: 0;
+    padding: 24px clamp(12px, 3vw, 32px);
+}
+
+.fv-pagina { max-width: 1100px; margin: 0 auto; }
+
+.fv-abrir-movil {
+    display: none;
+    border: 0;
+    background: var(--fv-menu);
+    color: #000;
+    font-size: 1.4rem;
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+}
+
+/* Aspecto común de las pantallas (tarjetas, tablas, títulos) */
+.fv-contenido h3 { font-weight: 700; margin-bottom: 2px; }
+.fv-contenido small { color: rgba(255, 255, 255, .85); font-size: .95rem; }
+
+.fv-contenido .card {
+    background: var(--fv-tarjeta);
+    border: 0;
+    border-radius: 20px;
+    color: #1b1b1b;
+}
+.fv-contenido .card label,
+.fv-contenido .card h5 { color: var(--fv-verde); font-weight: 700; }
+
+.fv-contenido .table {
+    --bs-table-bg: transparent;
+    --bs-table-color: #1b1b1b;
+}
+.fv-contenido .table thead {
+    --bs-table-bg: var(--fv-tabla-cab);
+    --bs-table-color: var(--fv-verde);
+}
+
+/* ───────────── Teléfono: el menú es un cajón que se superpone ───────────── */
+.fv-fondo-movil { display: none; }
+
+@media (max-width: 767.98px) {
+    .fv-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        flex: none;
+        width: var(--fv-menu-ancho);
+        height: 100vh;
+        margin: 0;
+        border-radius: 0 24px 24px 0;
+        transform: translateX(-105%);
+        z-index: 1050;
+    }
+    .fv-menu-abierto .fv-menu { transform: none; }
+
+    .fv-menu-abierto .fv-fondo-movil {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, .5);
+        z-index: 1040;
+    }
+
+    .fv-abrir-movil { display: inline-flex; }
+}
+

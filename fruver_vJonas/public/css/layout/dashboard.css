@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "IBM Plex Sans", sans-serif;
+    color: #e0e0e0;
+    display: flex;
+}
+
+
+
+/* ── Menú ── */
+.menu-dashboard {
+    width: 70px;
+    min-height: 100vh;
+    background: #0b6a34;
+    padding: 20px 10px;
+    transition: width .3s ease;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 9px;
+    
+}
+
+.menu-dashboard.open {
+    width: 250px;
+}
+
+/* ── Top ── */
+.top-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.top-menu .logo {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.top-menu .logo img {
+    width: 40px;
+    min-width: 40px;
+    border-radius: 5px;
+}
+
+.top-menu .logo span {
+    font-size: 20px;
+    margin-left: 18px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+
+
+.menu-dashboard.open .top-menu .logo span {
+    opacity: 1;
+}
+
+.top-menu .toggle {
+    cursor: pointer;
+    font-size: 24px;
+    min-width: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+/* ── Enlaces ── */
+.menu a {
+    text-decoration: none;
+    color: #e0e0e0;
+}
+
+.menu .enlace {
+    display: flex;
+    align-items: center;
+    padding: 14px 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background .3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.menu .enlace i {
+    font-size: 22px;
+    min-width: 30px;
+    text-align: center;
+}
+
+.menu .enlace span {
+    margin-left: 12px;
+    font-size: 16px;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.menu-dashboard.open .menu .enlace span {
+    opacity: 1;
+}
+
+.menu .enlace:hover {
+    background: #094f27;
+}
+
+/* ── Activo ── */
+.menu a.active .enlace,
+.menu a.active .enlace i {
+    color: #ffffff;
+    background: #094f27;
+}
+
+/* ── Contenido ── */
+.content {
+    flex: 1;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .menu-dashboard {
+        width: 100%;
+        min-height: auto;
+        padding: 10px 20px;
+    }
+
+    .menu-dashboard.open {
+        width: 100%;
+    }
+
+    .top-menu {
+        margin-bottom: 0;
+    }
+
+    .top-menu .logo span {
+        opacity: 1;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .menu-dashboard.open .menu {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .menu-dashboard.open .menu .enlace span {
+        opacity: 1;
+    }
+
+    .content {
+        min-height: auto;
+    }
+}

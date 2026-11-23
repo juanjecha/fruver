@@ -1,0 +1,168 @@
+/* Control de pedidos (dentro del layout con menú lateral).
+   Mismo estilo que Seguimiento / Clientes: usa las variables de layout/base.css
+   (--fv-tarjeta, --fv-verde, --fv-tabla-cab). Todo va acotado a #controlPedidos
+   para no afectar el menú ni otras pantallas. */
+
+/* ── ENCABEZADO ── */
+#controlPedidos #titulo { color: #fff; }
+
+#controlPedidos .btn-success {
+    background: #16a34a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+#controlPedidos .btn-success:hover { background: #15803d; }
+
+/* ── TARJETA DEL LISTADO ── */
+#controlPedidos > .card { box-shadow: 0 4px 12px rgba(0, 0, 0, .08); }
+
+/* ── CADA PEDIDO ── */
+#controlPedidos .pedido-item {
+    background: #dbdac2;
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid #16a34a;
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+#controlPedidos .pedido-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(22, 163, 74, .12);
+}
+
+#controlPedidos .pedido-item__num   { font-weight: 700; color: var(--fv-verde); font-size: 1.05rem; }
+#controlPedidos .pedido-item__total { font-weight: 700; color: #16a34a; font-size: 1.2rem; }
+
+#controlPedidos .pedido-item__info {
+    font-size: 14px;
+    color: #334155;
+    display: grid;
+    gap: 2px;
+}
+#controlPedidos .pedido-item__info strong { color: var(--fv-verde); }
+
+#controlPedidos .pedido-item__productos { font-size: 13.5px; color: #334155; }
+#controlPedidos .pedido-item__productos > strong { color: var(--fv-verde); }
+
+#controlPedidos .pedido-item__producto {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--fv-tabla-cab);
+    border-radius: 8px;
+    padding: 6px 10px;
+    margin-top: 4px;
+}
+
+/* Acciones: se acomodan en varias líneas según el ancho */
+#controlPedidos .pedido-item__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 6px;
+}
+
+/* ── BADGES ── */
+#controlPedidos .badge {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 11px;
+}
+
+/* ── BOTONES ── */
+#controlPedidos .btn-sm,
+#miModal .btn, #modalConfirmar .btn, #modalPago .btn {
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+#controlPedidos .btn-dark.btn-sm {
+    background: #1e293b;
+    border: 1.5px solid #1e293b;
+    color: #fff;
+}
+#controlPedidos .btn-dark.btn-sm:hover { background: #0f172a; }
+
+#controlPedidos .btn-primary.btn-sm,
+#modalConfirmar .btn-primary,
+#modalPago .btn-primary {
+    background: #16a34a;
+    border: none;
+}
+#controlPedidos .btn-primary.btn-sm:hover,
+#modalConfirmar .btn-primary:hover,
+#modalPago .btn-primary:hover { background: #15803d; }
+
+#controlPedidos .btn-outline-dark.btn-sm {
+    border: 1.5px solid #1e293b;
+    color: #1e293b;
+}
+#controlPedidos .btn-outline-dark.btn-sm:hover { background: #1e293b; color: #fff; }
+
+#controlPedidos .btn-outline-secondary.btn-sm {
+    border: 1.5px solid #64748b;
+    color: #475569;
+}
+#controlPedidos .btn-outline-secondary.btn-sm:hover { background: #64748b; color: #fff; }
+
+#controlPedidos .btn-danger.btn-sm {
+    background: #fff;
+    color: #dc2626;
+    border: 1.5px solid #dc2626;
+}
+#controlPedidos .btn-danger.btn-sm:hover { background: #fee2e2; color: #991b1b; }
+
+#modalConfirmar .btn-secondary,
+#modalPago .btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+}
+
+/* ── MODALES ── */
+#miModal .modal-content,
+#modalConfirmar .modal-content,
+#modalPago .modal-content {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    color: #1b1b1b;
+}
+#miModal .modal-header,
+#modalConfirmar .modal-header,
+#modalPago .modal-header {
+    background: var(--fv-tarjeta);
+    border-bottom: 1px solid #e2e8f0;
+}
+#miModal .modal-title,
+#modalConfirmar .modal-title,
+#modalPago .modal-title { color: var(--fv-verde); font-weight: 700; }
+
+#modalConfirmar .form-select,
+#modalPago .form-select {
+    background: #dbdac2;
+    border: 1.5px solid #f1f5f9;
+    border-radius: 8px;
+}
+
+/* El iframe usa casi toda la altura de la pantalla, así se ve bien también en celular */
+#iframeContenido {
+    width: 100%;
+    height: min(75vh, 700px);
+    border: 0;
+    display: block;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 576px) {
+    #controlPedidos .btn-success { width: 100%; }
+    #controlPedidos .pedido-item { padding: 14px; }
+    #controlPedidos .pedido-item__acciones .btn { flex: 1 1 calc(50% - 8px); }
+}

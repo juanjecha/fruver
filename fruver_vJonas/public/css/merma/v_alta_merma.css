@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #ffffff;
+    padding: 28px 24px;
+}
+
+form#formProducto {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ── LABELS ── */
+form#formProducto label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 4px;
+    display: block;
+}
+
+/* ── INPUTS TEXT / NUMBER / DATE ── */
+form#formProducto input[type="number"],
+form#formProducto input[type="date"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #374151;
+    background: #f9fafb;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+form#formProducto input[type="number"]:focus,
+form#formProducto input[type="date"]:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    background: #ffffff;
+}
+
+form#formProducto input[type="number"]::placeholder,
+form#formProducto input[type="date"]::placeholder {
+    color: #c4c9d4;
+}
+
+form#formProducto br {
+    display: none;
+}
+
+/* ── TEXTAREA ── */
+form#formProducto textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #374151;
+    background: #f9fafb;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: vertical;
+    min-height: 90px;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+form#formProducto textarea:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    background: #ffffff;
+}
+
+/* ── SELECT ── */
+form#formProducto select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #000000b9;
+    background: #f9fafb;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form#formProducto select:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    background-color: #f9fafb;
+}
+
+/* ── BOTÓN GUARDAR ── */
+form#formProducto input[type="submit"] {
+    align-self: flex-end;
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.4s ease, transform 0.1s;
+}
+
+#formProducto input[type="submit"]:hover {
+    background: #1c1d1c;
+    box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.35);
+}
+
+#formProducto input[type="submit"]:active {
+    transform: scale(0.97);
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 480px) {
+
+    body {
+        padding: 20px 16px;
+    }
+
+    form#formProducto input[type="number"],
+    form#formProducto input[type="date"] {
+        font-size: 16px;
+    }
+
+    form#formProducto input[type="submit"] {
+        width: 100%;
+        text-align: center;
+        align-self: stretch;
+    }
+
+    form#formProducto textarea,
+    form#formProducto select {
+        font-size: 16px;
+    }
+}

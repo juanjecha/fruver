@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    padding: 15px;
+    background-color: #fff;
+}
+
+#formRepar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    background-color: #f4f4f6;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 7px 10px;
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 12px;
+    outline: none;
+    appearance: none;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+@media (min-width: 480px) {
+    label:nth-of-type(-n+4),
+    input[type="text"]:nth-of-type(-n+4) {
+        width: 49%;
+    }
+}
+
+label:nth-of-type(5), 
+input[name="direccion"],
+label:nth-of-type(6),
+textarea {
+    width: 100% !important;
+}
+
+label:nth-of-type(5) {
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid #eee;
+}
+
+textarea {
+    min-height: 60px;
+    resize: none;
+}
+
+input[type="submit"] {
+    background-color: #05070a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    margin-left: auto;
+    width: auto;
+    transition: opacity 0.2s;
+}
+
+input[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+#formRepar br {
+    display: none;
+}

@@ -1,0 +1,58 @@
+/* ================================================
+   Entradas - ajustes propios de esta pantalla.
+   El diseño general (menú, tarjetas, tabla, botones Editar/Eliminar)
+   viene de layout/base.css y comun/v_tabla_datos.css, igual que Productos.
+   ================================================ */
+
+/* Encabezado: título a la izquierda y botón a la derecha; en teléfono el botón baja */
+.fv-encabezado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+
+.fila-producto td.fecha    { white-space: nowrap; }
+.fila-producto td.acciones { white-space: nowrap; }
+
+/* ── CADUCIDAD ── */
+.badge-caducidad {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.badge-caducidad.vencido {
+    background-color: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+.badge-caducidad.pronto {
+    background-color: #fef3c7;
+    color: #d97706;
+    border: 1px solid #fde68a;
+}
+
+/* ── BOTÓN REPETIR (punto 15) ── */
+.btn-repetir.btn-sm {
+    background: #fff6d6;
+    color: #8a6100;
+    border: 1.5px solid #d4a514;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+.btn-repetir.btn-sm:hover {
+    background: #ffe58a;
+    color: #000;
+}
+
+/* ── MODALES: título verde ── */
+.modal-title {
+    color: #1b5e3a;
+    font-weight: 700;
+}

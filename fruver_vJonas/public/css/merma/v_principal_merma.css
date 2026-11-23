@@ -1,0 +1,30 @@
+/* ================================================
+   Merma - ajustes propios de esta pantalla.
+   El diseño general (menú, tarjetas, tabla, botones Editar/Eliminar)
+   viene de layout/base.css y comun/v_tabla_datos.css, igual que Productos.
+   ================================================ */
+
+/* Encabezado: título a la izquierda y botón a la derecha; en teléfono el botón baja */
+.fv-encabezado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+
+.fila-producto td.fecha    { white-space: nowrap; }
+.fila-producto td.acciones { white-space: nowrap; }
+
+/* Cantidad de merma resaltada en rojo */
+.fila-producto td.cantidad {
+    font-weight: 700;
+    color: #dc2626;
+}
+
+/* ── MODAL: título verde ── */
+.modal-title {
+    color: #1b5e3a;
+    font-weight: 700;
+}

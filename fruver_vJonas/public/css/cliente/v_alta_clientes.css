@@ -1,0 +1,83 @@
+/* ── CONFIGURACIÓN GENERAL ── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background: #ffffff;
+    padding: 24px;
+}
+
+form#formCliente {
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* Espacio uniforme entre campos */
+}
+
+/* ── LABELS ── */
+form#formCliente label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: -4px; /* Acerca el label al input */
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* ── INPUTS (TEXTO, TEL, ETC) ── */
+form#formCliente input[type="text"],
+form#formCliente input[type="tel"],
+form#formCliente input[type="num"],
+form#formCliente select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #374151;
+    background: #f9fafb;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+form#formCliente input:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    background: #ffffff;
+}
+
+/* ── BOTÓN GUARDAR (Igual a productos) ── */
+form#formCliente input[type="submit"] {
+    margin-top: 10px;
+    align-self: flex-end;
+    background: #000000; /* Negro elegante como pediste */
+    color: #ffffff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form#formCliente input[type="submit"]:hover {
+    background: #1c1d1c;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+form#formCliente input[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 480px) {
+    form#formCliente input[type="submit"] {
+        width: 100%;
+        align-self: stretch;
+    }
+}

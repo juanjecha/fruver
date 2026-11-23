@@ -1,0 +1,340 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+/* ── HEADER ── */
+.d-flex.justify-content-between.align-items-center.mb-3 {
+    margin-bottom: 32px;
+}
+
+
+/* ── BOTÓN REGISTRAR ── */
+.btn-success {
+    background: #16a34a;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 300;
+    box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);
+    transition: all 0.25s ease;
+}
+
+.btn-success:hover {
+    background: #15803d;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(22, 163, 74, 0.4);
+}
+
+.btn-success:active {
+    transform: translateY(0);
+}
+
+/* ── SEARCH CARD ── */
+.card {
+    border: 1px solid #e8f5e9;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    animation: fadeInUp 0.4s ease both;
+}
+
+.card.mb-3.p-3 {
+    animation-delay: 0.05s;
+}
+
+.card.p-3:last-of-type {
+    animation-delay: 0.12s;
+}
+
+.card.mb-3.p-3 label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #1b5e3a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+#buscar {
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #2e2e2e;
+    background: #f9fafb;
+    padding: 10px 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#buscar:focus {
+    border-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
+    background: white;
+}
+
+#buscar::placeholder {
+    color: #c4c9d4;
+}
+
+/* ── TABLE CARD TITLE ── */
+.card h5 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #1b5e3a;
+    letter-spacing: -0.2px;
+}
+
+/* ── TABLE ── */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table thead tr th {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1b5e3a;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 10px 16px;
+    background: #c8debb;
+    border-bottom: 2px solid #dcfce7;
+}
+
+.table thead tr th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.table thead tr th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.fila-producto td {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #374151;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+    transition: all 0.4s ease, transform 0.1s;    
+}
+
+.fila-producto:last-child td {
+    border-bottom: none;
+}
+
+.fila-producto:hover td {
+    background: #c8debb;
+}
+
+.fila-producto td.nombre {
+    font-weight: 600;
+    color: #1a2e1a;
+}
+
+.fila-producto td.descripcion {
+    color: #6b7280;
+    font-size: 13.5px;
+}
+
+/* ── BOTONES ── */
+.btn-warning.btn-sm {
+    background: #d0e7cb;
+    color: #048300;
+    border: 1.5px solid #048300;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-warning.btn-sm:hover {
+    background: #8ae279;
+    color: #000000;
+    box-shadow: 3px 3px 3px 0px rgba(22, 163, 74, 0.35);
+}
+
+.btn-danger.btn-sm {
+    background: #e8dada;
+    color: #ae0000;
+    border: 1.5px solid #ff0000;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-danger.btn-sm:hover {
+    background: #ff8989;
+    color: #000000;
+    box-shadow: 3px 3px 3px 0px rgba(163, 22, 22, 0.35);
+}
+
+/* ── MODAL ── */
+.modal-content {
+    color:#1b1b1b;
+    border-radius: 18px;
+    border: none;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    background: #f0fdf4;
+    border-bottom: 1px solid #dcfce7;
+    border-radius: 18px 18px 0 0;
+    padding: 16px 24px;
+}
+
+.modal-title {
+    font-weight: 700;
+    color: #15803d;
+    font-size: 18px;
+}
+
+
+
+
+
+
+/*----RESPONSIVO----- */
+
+/* Tablet (max 768px) */
+@media (max-width: 768px) {
+
+    body {
+        padding: 24px 14px;
+    }
+
+    #titulo {
+        font-size: 24px;
+        letter-spacing: -0.5px;
+    }
+
+    h3 + small {
+        font-size: 14px;
+    }
+
+    /* Header: título arriba, botón abajo */
+    .d-flex.justify-content-between.align-items-center.mb-3 {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 14px;
+    }
+
+    .btn-success {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* Tabla: scroll horizontal si no cabe */
+    .card.p-3 {
+        overflow-x: auto;
+    }
+
+    .table {
+        min-width: 480px;
+    }
+
+    .card h5 {
+        font-size: 15px;
+    }
+}
+
+/* Móvil (max 480px) */
+@media (max-width: 480px) {
+
+    body {
+        padding: 16px 10px;
+    }
+
+    #titulo {
+        font-size: 20px;
+    }
+
+    h3 + small {
+        font-size: 13px;
+    }
+
+    .card.mb-3.p-3,
+    .card.p-3 {
+        padding: 14px !important;
+        border-radius: 12px;
+    }
+
+    .card.mb-3.p-3 label {
+        font-size: 12px;
+    }
+
+    #buscar {
+        font-size: 13px;
+        padding: 9px 12px;
+    }
+
+    .table thead tr th {
+        font-size: 11px;
+        padding: 8px 10px;
+    }
+
+    .fila-producto td {
+        font-size: 12px;
+        padding: 10px 10px;
+    }
+
+    .fila-producto td.descripcion {
+        font-size: 12px;
+    }
+
+    /* Botones solo ícono en móvil */
+    .btn-warning.btn-sm,
+    .btn-danger.btn-sm {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .btn-warning.btn-sm span,
+    .btn-danger.btn-sm span {
+        display: none;
+    }
+
+    .modal-dialog {
+        margin: 10px;
+    }
+
+    .modal-title {
+        font-size: 15px;
+    }
+}
+
+
+
+/* ── FOTO Y CÓDIGO DEL PRODUCTO ── */
+.fila-producto td.foto { width: 72px; }
+.fila-producto td.foto img,
+.fila-producto td.foto .sin-foto {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+}
+.fila-producto td.foto img {
+    object-fit: cover;
+    display: block;
+}
+.fila-producto td.foto .sin-foto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e3ecd6;
+    color: #8aa673;
+    font-size: 20px;
+}
+.fila-producto td.codigo {
+    font-weight: 600;
+    color: #1b5e3a;
+    white-space: nowrap;
+}
+.fila-producto td.acciones { white-space: nowrap; }
