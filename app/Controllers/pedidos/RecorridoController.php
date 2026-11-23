@@ -52,13 +52,14 @@ class RecorridoController extends BaseController
                 } else {
                     $completo = false;
                 }
-                unset($a);
-
-                //solo si todas las aristas tienen trazo real; si no, el JS usa factor_calles
-                $g['arbol']['costo_metros_calles'] = $completo ? round($totalCalles, 1) : null;
             }
-            unset($g);
-        }
+            unset($a);
+
+            //solo si todas las aristas tienen trazo real; si no, el JS usa factor_calles
+            $g['arbol']['costo_metros_calles'] = $completo ? round($totalCalles, 1) : null;
+        }    
+        unset($g);
+        
 
         return $this->response->setJSON([
             'puede_iniciar'  => $miRepartidor !== null && $miRepartidor > 0,

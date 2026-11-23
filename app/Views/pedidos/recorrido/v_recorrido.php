@@ -146,7 +146,6 @@
         ? g.arbol.costo_metros_calles
         : g.arbol.costo_metros * c.factor_calles;
         var vehiculo = vehiculoDe(g.id_repartidor);
-        var metros = g.arbol.costo_metros * c.factor_calles;
         var litros = (metros / 1000) / c.rendimiento[vehiculo];       // combustible = distancia / rendimiento
         var nivel = litros <= c.litros_bajo ? 'bajo' : (litros <= c.litros_alto ? 'medio' : 'alto');
         return { vehiculo: vehiculo, metros: metros, litros: litros, costo: litros * c.precio_litro, nivel: nivel };
